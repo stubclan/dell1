@@ -11,10 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
 	/**
+	 * Testing is not working
 	 * App entry point
 	 * @param args any arguments that are passed in to the app
 	 */
     public static void main(String[] args) {
+    	
     	SpringApplication.run(Application.class, args);
     }
 
