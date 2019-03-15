@@ -88,6 +88,7 @@ public class ClientController {
 	 @PreAuthorize("hasAuthority('SAVE_CLIENT')")
 	 @PostMapping
 	 public String saveClient(ClientCommand command, RedirectAttributes redirectAttributes) {
+		 logger.info("saving client in ClientController");
 
 	     //NOTE: if we want to capture errors correctly, we would wrap the following code in a try/catch
          // and the catch would add a nice error message to the mode
@@ -115,6 +116,7 @@ public class ClientController {
      @PreAuthorize("hasAuthority('DELETE_CLIENT')")
 	 @GetMapping("/{id}/delete")
 	 public String deleteClient(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
+    	 logger.info("delete client in ClientController");
          // NOTE to handle exceptions, we would wrap the following code in a try/catch
          // and in the catch forward to a different page
 

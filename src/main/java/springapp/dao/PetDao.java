@@ -78,6 +78,7 @@ public class PetDao {
 	}
 	
 	public Pet save(Pet pet) {
+		logger.info("save method in PetDao");
 		Integer id = pet.getId();
 		if(id == null) {
 			
@@ -109,6 +110,7 @@ public class PetDao {
 	}
 	
 	public void delete(int id) {
+		logger.info("delete method in PetDao");
 		
 		jdbcTemplate.update("DELETE FROM pets WHERE id = ?",
 				new Object[] {id});
