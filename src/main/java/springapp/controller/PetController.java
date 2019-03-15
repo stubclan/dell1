@@ -132,6 +132,7 @@ public class PetController {
 	@PreAuthorize("hasAuthority('SAVE_PET')")
 	@PostMapping
 	 public String savePet(PetCommand command, RedirectAttributes redirectAttributes, boolean fromClientPage) {
+		logger.info("savePet method in PetController");
 
         // we pass in the pet command to the service to update or create a new pet
         Pet pet = petService.savePet(command);
@@ -157,6 +158,7 @@ public class PetController {
 	public String deletePet(@PathVariable("id") String id,
 							@RequestParam(name="clientId", required=false) Integer clientId,
 							RedirectAttributes redirectAttributes) {
+		logger.info("deletePet method in PetController");
 
 	    // we pass the pet id to the service so it can delete the pet
 		petService.deletePet(id);

@@ -61,6 +61,7 @@ public class ClientDao {
 	}
 	
 	public Client save(Client client) {
+		logger.info("save method in ClientDao");
 		Integer id = client.getId();
 		if(id == null) {
 			
@@ -91,7 +92,7 @@ public class ClientDao {
 	
 	
 	public void delete(int id) {
-		
+		logger.info("delete method in ClientDao");
 		jdbcTemplate.update("DELETE FROM pets WHERE client_id = ?",
 				new Object[] {id});
 		
