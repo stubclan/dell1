@@ -24,12 +24,13 @@ create table users (
 );
 
 CREATE TABLE appointments (
-	id INTEGER NOT NULL,
-	apptDateTime INTEGER NOT NULL,
-	clientId INTEGER,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	pet_id INTEGER NOT NULL,
+	client_id INTEGER NOT NULL,
 	reason TEXT(255) NOT NULL,
-	comments TEXT(255),
-	scheduleComplete INTEGER DEFAULT 0 NOT NULL
+	appt_time DATETIME NOT NULL,
+	duration INTEGER DEFAULT 0 NOT NULL,
+	comments TEXT(255)
 );
 
 insert into users values (null, 'admin', 'password', 'SUPER_ADMIN');

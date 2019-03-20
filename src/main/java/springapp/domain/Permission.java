@@ -11,8 +11,12 @@ public enum Permission implements GrantedAuthority{
 	LIST_CLIENTS,
 	DELETE_CLIENT,
 	SAVE_CLIENT,
-	GET_CLIENT;
+	GET_CLIENT,
 	
+	LIST_APPOINTMENTS,
+	DELETE_APPOINTMENT,
+	SAVE_APPOINTMENT,
+	GET_APPOINTMENT;
 
 	@Override
 	public String getAuthority() {

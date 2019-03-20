@@ -1,7 +1,9 @@
 # Eclipse
+.dbeaver-data-sources.xml
 .classpath
 .project
 .settings/
+spring-app.db
 
 # Intellij
 .idea/

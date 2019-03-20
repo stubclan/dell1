@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data-sources>
-	<data-source id="sqlite_jdbc-16982f3baa7-4f8e8da0420bc7ac" provider="generic" driver="sqlite_jdbc" name="SQLite - spring-app.db" save-password="true" read-only="false">
-		<connection server="" database="C:\Users\Sujan_Aryal\Desktop\AustinCodingAca\groupProject\spring-app.db" url="jdbc:sqlite:C:\Users\Sujan_Aryal\Desktop\AustinCodingAca\groupProject\spring-app.db" type="dev"/>
-	</data-source>
-	<filters/>
-</data-sources>
