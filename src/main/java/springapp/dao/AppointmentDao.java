@@ -35,11 +35,13 @@ public class AppointmentDao {
 
 		@Override
 		public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
-			String reasonString = rs.getString("gender");
+			String reasonString = rs.getString("reason");
 			Reason reason = null;
 			if(reasonString!= null) {
 				reason = Reason.valueOf(reasonString);
-
+			}
+			else {
+				reason = Reason.Checkup;
 			}
 			
 			return new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("client_id"), reason, rs.getTimestamp("appt_time"), rs.getInt("duration"), rs.getString("comments"));
@@ -72,7 +74,7 @@ public class AppointmentDao {
 					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments(pet_id, client_id, reason, appt_time, duration, comments) VALUES (?, ?, ?, ?, ?, ?)");
 					statement.setInt(1, appointment.getPetId());
 					statement.setInt(2, appointment.getClientId());
-					statement.setObject(3, appointment.getReason());
+					statement.setString(3, "Boring");
 					statement.setTimestamp(4, appointment.getTime());
 					statement.setInt(5, appointment.getDuration());
 					statement.setString(6, appointment.getComments());

@@ -5,6 +5,9 @@
 .settings/
 spring-app.db
 
+# Sqlite generated Scripts
+Scripts/
+
 # Intellij
 .idea/
 *.iml

@@ -89,5 +89,5 @@ public class AppointmentCommand {
 
 	public void setComments(String comments) {
 		this.comments = comments;
-	}	  
+	}
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<header th:replace="fragments/head.html :: head" >
+</header>
+<body>
+	<div id="container" class="container-fluid" >
+		<header th:replace="fragments/header.html :: header" >
+		</header>
+		<div id="mainBody" class="col-md-8">
+			<form class="" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+			
+			<div class="row">
+				<label for="petId">Pet</label>
+	            <input id="petId" name="petId" type="number" data-th-field="*{petId}">
+			</div>
+			
+			<div class="row">
+				<label for="clientId">Client</label>
+	            <input id="clientId" name="clientId" type="number" data-th-field="*{clientId}">
+			</div>
+			
+			<!-- <div class="row">
+				<label for="reason">Reason</label>
+	            <input id="reason" name="reason" type="text" data-th-field="*{reason}">
+			</div> -->
+			
+			<div class="row">
+				<label for="duration">Duration</label>
+	            <input id="duration" name="duration" type="number" data-th-field="*{duration}">
+			</div>
+			
+			<div class="row">
+				<label for="comments">Comments</label>
+	            <input id="comments" name="comments" type="text" data-th-field="*{comments}">
+			</div>
+			
+			<div class="row">			
+				<button type="submit" form="appointmentForm" class="button"  value="Save">Save</button>
+			</div>
+
+			
+			
+			</form>
+		
+		</div>
+		
+		
+</body>
+</html>
+
+
+
+
