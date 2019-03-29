@@ -19,3 +19,7 @@
 .right {
 	justify-content: left;
 }
+
+.btn-width {
+	width: 20px!important;
+	}

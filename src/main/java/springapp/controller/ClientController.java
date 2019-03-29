@@ -40,14 +40,14 @@ public class ClientController {
      * @param model the model to populate for merging  with the view
      * @return the client list page template
      */
-	 @PreAuthorize("hasAuthority('LIST_CLIENTS')")
+	 @PreAuthorize("hasAuthority('GET_CLIENT')")
 	 @GetMapping
 	 public String listClients(Model model) {
         List<Client> clients = clientService.getClients();
 		model.addAttribute("clients", clients);
         return "clients/listClients";
     }
-
+	 
 
     /**
      * Generates the model for rendering the specific client page

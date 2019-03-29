@@ -1,46 +1,41 @@
 package springapp.domain;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Appointment {
 	private final Integer id;
-	private java.util.Date apptDateTime;
-	private final Integer clientId;
 	private final Integer petId;
-	private Enum apptReason;
-	private Integer apptDuration;
+	private final Integer clientId;
+	private Reason reason;
+	private Timestamp time;
+	private Integer duration;
 	private String comments;
-	private Boolean scheduleComplete; 
 	
-	public Appointment(Integer myID, Integer myClient, Integer myPet ){
+	public Appointment(Integer myId, Integer myPetId, Integer myClientId, Reason myReason, Timestamp myApptTime, Integer myDuration, String myComments){
 		
-		this.id = myID;
-		this.clientId = myClient;
-		this.petId = myPet;
+		this.id = myId;
+		this.petId = myPetId;
+		this.clientId = myClientId;		
+		this.reason = myReason;
+		this.time = new Timestamp(System.currentTimeMillis());
+		this.duration = myDuration;
+		this.comments = myComments;
 		
 	}
-
-	public java.util.Date getApptDateTime() {
-		return apptDateTime;
+	
+	public Reason getReason() {
+		return reason;
 	}
 
-	public void setApptDateTime(java.util.Date apptDateTime) {
-		this.apptDateTime = apptDateTime;
+	public void setReason(Reason apptReason) {
+		this.reason = apptReason;
 	}
 
-	public Enum getApptReason() {
-		return apptReason;
+	public Timestamp getTime() {
+		return time;
 	}
 
-	public void setApptReason(Enum apptReason) {
-		this.apptReason = apptReason;
-	}
-
-	public Integer getApptDuration() {
-		return apptDuration;
-	}
-
-	public void setApptDuration(Integer apptDuration) {
-		this.apptDuration = apptDuration;
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public String getComments() {
@@ -50,18 +45,26 @@ public class Appointment {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
-	public Boolean getScheduleComplete() {
-		return scheduleComplete;
+	public void setDuration(Integer duration) {
+		this.duration = duration;
 	}
 
-	public void setScheduleComplete(Boolean scheduleComplete) {
-		this.scheduleComplete = scheduleComplete;
+	public Integer getId() {
+		return id;
 	}
 
+	public Integer getPetId() {
+		return petId;
+	}
 
-	
-	
+	public Integer getClientId() {
+		return clientId;
+	}
 
+	public Integer getDuration() {
+		// TODO Auto-generated method stub
+		return duration;
+	}	
+	
 	
 }

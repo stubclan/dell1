@@ -3,11 +3,60 @@
 <header th:replace="fragments/head.html :: head" >
 </header>
 <body>
-	<div id="container" class="content pure-g" >
-		<header th:replace="fragments/header.html :: header" >
-		</header>
-		<div id="mainBody" class="pure-u pure-g column">
-			<h1>List Appointments</h1>
+
+	<div id="container" class="container-fluid" >
+		<div class="row">
+			<header data-th-replace="fragments/header.html :: header" >
+			</header>
+			<div id="mainBody" class="col-md-8 col-sm-8">
+				<div id="content" class="container">
+					<div class="row">
+						<a class="button btn-primary add-button"  data-th-href="@{'/appointments/new'}">Add Appointment</a>
+					</div>
+					<div class="row">
+					    <div data-th-if="${deleted}" class="message-box-info">
+							Deleted successfully
+					    </div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">Id</th>
+									<th scope="col">Time</th>
+									<th scope="col">Duration</th>
+									<th scope="col">Client Id</th>
+							<!-- 	<th scope="col">Client Name</th>   -->
+									<th scope="col">Pet Id</th>
+							<!--		<th scope="col">Pet Name</th>  -->
+									<th scope="col">Reason</th>								
+									<th scope="col">Comments</th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									
+									
+								</tr>
+							</thead>
+							<tbody>	
+								<tr data-th-each="appointment : ${appointments}">
+									<td data-th-text="${appointment.id}">...</td>		
+									<td data-th-text="${appointment.time}">...</td>		
+								    <td data-th-text="${appointment.duration}">...</td>			
+								    <td data-th-text="${appointment.clientId}">...</td>	
+                                    <td data-th-text="${appointment.petId}">...</td>	
+									<td data-th-text="${appointment.reason}">...</td>					
+									<td data-th-text="${appointment.comments}">...</td>	
+									<td><a class="btn btn-success btn-width" data-th-href="@{/appointments/edit/{e}(e=${appointment.id})}">Edit</a></td>										
+									<td><a class="btn btn-danger btn-width" data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}">Delete</a></td>
+					
+										
+														
+															
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
 		</div>
     </div>
 </body>
