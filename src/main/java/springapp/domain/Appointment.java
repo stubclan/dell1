@@ -34,16 +34,8 @@ public class Appointment {
 		return time;
 	}
 
-	public void setTime(Timestamp apptDateTime) {
-		this.time = apptDateTime;
-	}
-
-	public Integer getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Integer apptDuration) {
-		this.duration = apptDuration;
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public String getComments() {
@@ -52,6 +44,9 @@ public class Appointment {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	public void setDuration(Integer duration) {
+		this.duration = duration;
 	}
 
 	public Integer getId() {
@@ -66,6 +61,10 @@ public class Appointment {
 		return clientId;
 	}
 
+	public Integer getDuration() {
+		// TODO Auto-generated method stub
+		return duration;
+	}	
 	
 	
 }

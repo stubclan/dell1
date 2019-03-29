@@ -2,39 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MyVersion</title>
 </head>
 <body>
-	<div class="content">
-		<div id="nav" class="pure-u column" data-th-fragment="header">
-	        <div class="nav-inner">
-	            <div class="pure-menu">
-	                <ul class="pure-menu-list" sec:authorize="isAuthenticated()">
-	                    <li class="pure-menu-item">
-	                    	<a href="#" data-th-href="@{'/'}" class="pure-menu-link">Home</a>
-                    	</li>
-	                    <li class="pure-menu-item">
-	                    	<a href="#" data-th-href="@{'/clients'}" class="pure-menu-link">Clients</a></li>
-	                    <li class="pure-menu-item">
-	                    	<a href="#" data-th-href="@{'/pets'}" class="pure-menu-link">Pets</a>
-                    	</li>
-	                    <li class="pure-menu-item">
-	                    	<a href="#" data-th-href="@{'/appointments'}" class="pure-menu-link">Appointments</a>
-                    	</li>
-	                    <li class="pure-menu-item">
-	                    	<a href="#" data-th-href="@{'/logout'}" class="pure-menu-link">Sign Out</a>
-                    	</li>
-	                </ul>
-	                <ul class="pure-menu-list" sec:authorize="isAnonymous()">
-	                    <li class="pure-menu-item"><a href="#" data-th-href="@{'/'}" class="pure-menu-link">Home</a></li>
-	                    <li class="pure-menu-item"><a href="#" data-th-href="@{'/login'}" class="pure-menu-link">Sign In</a></li>
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-	    <div id="mainBody">
-	    
-	    </div>
+	<div class="container-fluid">
+			<div id="nav" class="col-md-2 col-sm-2 sidebar" data-th-fragment="header">
+		        <div class="nav-inner">
+		            <div class="nav-menu sidebar-menu">
+		                <ul class="nav flex-column" sec:authorize="isAuthenticated()">
+		                    <li class="nav-item">
+		                    	<a href="#" data-th-href="@{'/'}" class="nav-link">Home</a>
+	                    	</li>
+		                    <li class="nav-item">
+		                    	<a href="#" data-th-href="@{'/clients'}" class="nav-link">Clients</a></li>
+		                    <li class="nav-item">
+		                    	<a href="#" data-th-href="@{'/pets'}" class="nav-link">Pets</a>
+	                    	</li>
+		                    <li class="nav-item">
+		                    	<a href="#" data-th-href="@{'/appointments'}" class="nav-link">Appointments</a>
+	                    	</li>
+		                    <li class="nav-item">
+		                    	<a href="#" data-th-href="@{'/logout'}" class="nav-link">Sign Out</a>
+	                    	</li>
+		                </ul>
+		                <ul class="nav flex-column" sec:authorize="isAnonymous()">
+		                    <li class="nav-item"><a href="#" data-th-href="@{'/'}" class="nav-link">Home</a></li>
+		                    <li class="nav-item"><a href="#" data-th-href="@{'/login'}" class="nav-link">Sign In</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="col-md-8 col-sm-8">
+		    
+		    </div>
 	</div>
 
 </body>

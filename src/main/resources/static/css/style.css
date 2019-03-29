@@ -1,83 +1,47 @@
-html, body {
-   color: #333;
-   height: 100%
+/*Custom styles*/
+
+.sidebar {
+	background-color: #343a40;
+	height: 100vh;
 }
 
-
-#container {
-	display: grid;
-
-  	grid-template-areas:
-    "nav mainBody";
-    
-  grid-template-columns: 130px 1fr;
-  grid-template-rows: 1fr;
-
-  height: 100%;
-}
-
-#nav {
-	grid-area: nav;
-  	padding-left: 5px ;
-  	background-color: #555;
-  }
-
-#mainBody {
-	grid-area: mainBody;
-	display: grid;
-}
-
-#loginBox {
-    display: grid;
-	align-items: center;
-	justify-items: center; /* adjusted */
-}
-
-#loginBox > div {
-	border: 1px solid #444;
+.sidebar-menu ul li {
 	padding: 10px;
-	border-radius: 4px;
-	
+	border-bottom: 1px solid white;
 }
 
-
-.fullWidth {
-	width: 100%;
-}
-
-
-.pad {
-	padding: 10px;
-}
-
-.margin {
-	margin: 10px;	
-}
-.right {
-	text-align: right
-}
-
-.message-box-error,
-.message-box-info,
-.message-box-success {
-	margin: 5px 0px;
-	display: block;
-	padding: 10px;
-	text-align: center;
+.sidebar-menu ul li a {
 	color: white;
-	border-radius: 4px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}	
-
-.message-box-error {
-	background: rgb(202, 60, 60); /* this is a maroon */
-}
-.message-box-info{
-	background: rgb(66, 184, 221); /* this is a light blue */
-}
-.message-box-success {
-	background: rgb(28, 184, 65); /* this is a green */
 }
 
+.sidebar-menu ul li a:hover {
+	color: #343a40;
+	background-color: white;
+}
 
-.
+.error {
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	color: white;
+}
+
+.error h3 {
+	background: #007db8;
+	padding: 40px;
+}
+
+.error .lead {
+	color: grey;
+}
+
+.loginControl {
+	align: center;
+}
+
+.loginControl .row {
+	margin: 10px;
+}
+
+.add-button {
+	padding: 10px;
+}

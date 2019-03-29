@@ -12,27 +12,27 @@
 			
 			<div class="">
 				<label for="petId">Pet</label>
-	            <input id="petId" name="petId" type="number" data-th-field="*{petId}">
+	            <input id="petId" name="petId" type="number" value="${appointment.petId}" disabled>
 			</div>
 			
 			<div class="">
 				<label for="clientId">Client</label>
-	            <input id="clientId" name="clientId" type="number" data-th-field="*{clientId}">
+	            <input id="clientId" name="clientId" type="number" value="${appointment.clientId}" disabled>
 			</div>
 			
 			<div class="">
 				<label for="reason">Reason</label>
-	            <input id="reason" name="reason" type="text" data-th-field="*{reason}">
+	            <input id="reason" name="reason" type="text" value="${appointment.reason}" data-th-field="*{reason}">
 			</div>
 			
 			<div class="">
 				<label for="duration">Duration</label>
-	            <input id="duration" name="duration" type="number" data-th-field="*{duration}">
+	            <input id="duration" name="duration" type="number" value="${appointment.duration}" data-th-field="*{duration}">
 			</div>
 			
 			<div class="">
 				<label for="comments">Comments</label>
-	            <input id="comments" name="comments" type="text" data-th-field="*{comments}">
+	            <input id="comments" name="comments" type="text" value="${appointment.comments}" data-th-field="*{comments}">
 			</div>
 			
 			<div class="">			

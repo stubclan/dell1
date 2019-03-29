@@ -11,8 +11,13 @@
 			<form class="" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
 			
 			<div class="">
+				<label for="appointmentId">Appointment ID:</label>
+	            <input id="appointmentId" name="id" type="number" data-th-field="*{id}" value="">
+			</div>
+						
+			<div class="">
 				<label for="petId">Pet</label>
-	            <input id="petId" name="petId" type="number" data-th-field="*{petId}">
+	            <input id="petId" name="petId" type="number" data-th-field="*{petId}" value="">
 			</div>
 			
 			<div class="">

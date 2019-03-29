@@ -3,35 +3,39 @@
 <header th:replace="fragments/head.html :: head" >
 </header>
 <body>
-	<div id="container" class="content pure-g" >
-		<header th:replace="fragments/header.html :: header" >
-		</header>
-		<div id="mainBody" class="pure-u column">
-			<div id="loginBox" >
-				<div class="bordered pure-u column">
-					
-					<div data-th-if="${param.error}" class="message-box-error">
-				        Invalid username and password
-				    </div>
-				    <div data-th-if="${param.logout}" class="message-box-info">
-				        You have been logged out
-				    </div>
-					<form data-th-action="@{/login}" method="post" class="pure-form pure-form-aligned">
-					    
-				       <div class="pure-control-group">
-				            <label for="username">Username</label>
-				            <input id="username" name="username" type="text" placeholder="Username">
-				        </div>
-		
-				        <div class="pure-control-group">
-				            <label for="password">Password</label>
-				            <input id="password" name="password" type="password" placeholder="Password">
-				        </div>
-				        <div class="pure-controls">
-		      	            <button type="submit" class="pure-button pure-button-primary">Sign In</button>
-			        	</div>
-					</form>
-					</div>
+	<div id="container" class="container-fluid" >
+		<div class="row">
+			<header th:replace="fragments/header.html :: header" >
+			</header>
+			<div id="mainBody" class="col-md-8 col-sm-8 ">
+				<div id="loginBox" class="jumbotron loginControl">
+					<h1>Welcome to Scheduler Application</h1>
+				
+					<div class="loginControl">
+						
+						<div data-th-if="${param.error}" class="p-3 mb-2 bg-danger text-white">
+					        Invalid username and password
+					    </div>
+					    <div data-th-if="${param.logout}" class="p-3 mb-2 bg-info text-white">
+					        You have been logged out
+					    </div>
+						<form data-th-action="@{/login}" method="post" class="form-signin">
+						    
+					       <div class="row">
+					            <label class="sr-only" for="username">Username: </label>
+					            <input id="username" class="form-control" name="username" type="text" placeholder="Username">
+					        </div>
+			
+					        <div class="row">
+					            <label for="password" class="sr-only">Password: </label>
+					            <input id="password" class="form-control" name="password" type="password" placeholder="Password">
+					        </div>
+					        <div class="row">
+			      	            <button type="submit" class="btn btn-success">Sign In</button>
+				        	</div>
+						</form>
+						</div>
+			        </div>
 		        </div>
 	        </div>
         </div>

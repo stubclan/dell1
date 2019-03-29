@@ -1,12 +1,12 @@
 package springapp.command;
 
 import java.sql.Timestamp;
-
 import springapp.domain.Appointment;
+import springapp.domain.Client;
 import springapp.domain.Reason;
 
 /**
- * This command class is used to pass information back and force between the appointment and the server
+ * This command class is used to pass information back and force between the client and the server
  * 
  */
 public class AppointmentCommand {
@@ -43,6 +43,8 @@ public class AppointmentCommand {
 		this.id = id;
 	}
 
+
+	
 	public Integer getPetId() {
 		return petId;
 	}
