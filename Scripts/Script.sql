@@ -1,1 +1,0 @@
-select id, pet_id, client_id, reason, appt_time, duration, comments from appointments
