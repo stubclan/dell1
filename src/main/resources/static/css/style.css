@@ -49,3 +49,7 @@ body{
 .add-button {
 	padding: 10px;
 }
+
+.appointmentCollapse .button {
+	margin: 10px;
+}	

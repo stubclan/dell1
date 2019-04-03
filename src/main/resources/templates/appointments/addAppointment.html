@@ -15,46 +15,102 @@
 			</p>
 			</div>
 			
-			<form class="col-md-4" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+			<div class="container">
+			<a class="btn btn-info btn-width" data-th-href="@{/pets/new/}">Add a new Pet</a>									
+			<a class="btn btn-info btn-width" data-th-href="@{/clients/new}">Add a new Client</a>	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Pet Name</th>
+						<th scope="col"></th>							
+																	
+					</tr>
+				</thead>
+				<tbody>	
+					<tr data-th-each="pet : ${pets}">
+						<td data-th-text="${pet.name}">...</td>	
+						<td data-th-text="${pet.gender}">...</td>						
+						<td>
+							<!-- <a class="btn btn-primary" data-toggle="collapse" data-th-href="'#collapse' + ${pet.id}" role="button" aria-expanded="false" aria-controls="collapseExample">
+							    Create appointment
+						  	</a> -->
+						  	
+						  	<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#modal'+${pet.id}">
+							  Create appointment
+							</button>
+						  	
+						</td>
+						<div class="modal fade" data-th-id="'modal'+${pet.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Add a new Appointment</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+						      <!-- Form for the modal starts here -->
+						        <form class="col-md-4" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">	
 			
-			<div class="form-group">
-				<label for="petId">Pet</label>
-	            <input id="petId" name="petId" type="number" class="form-control" data-th-field="*{petId}">
+									<div class="form-group">
+										<label for="clientId">Client</label>
+							            <input id="clientId" name="clientId" type="number" class="form-control" data-th-field="*{clientId}" data-th-value="${clientId}">
+									</div>
+									
+									<div class="form-group">
+										<label for="reason">Reason</label>			
+										<select id = "reason" name = "reason" type="select" class="form-control" th:field="*{reason}">
+											 <option th:each="reason : ${reasons}" 
+											         th:value="${reason}" 
+											         th:text="${reason}">Reason</option>
+										</select>
+									</div>				
+									
+									<div class="form-group" data-provide="datepicker">
+										<label for="duration">Date</label>
+							            <input id="#dp1" class="form-control" data-th-field="*{duration}">
+									</div>
+									
+			<!-- 						<div class="form-group">
+										<label for="duration">Duration</label>
+							            <input id="duration" name="duration" type="number" class="form-control" data-th-field="*{duration}">
+									</div>
+									 -->
+									<div class="form-group">
+										<label for="comments">Comments</label>
+							            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
+									</div>
+									
+									<!-- <div class="form-group">			
+										<button type="submit" form="appointmentForm" class="btn btn-primary"  value="Save">Save</button>
+									</div>	 -->		
+									
+									</form>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <button type="submit" form="appointmentForm" class="btn btn-primary">Save changes</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>																		
+					</tr>
+				</tbody>
+			</table>
 			</div>
 			
-			<div class="form-group">
-				<label for="clientId">Client</label>
-	            <input id="clientId" name="clientId" type="number" class="form-control" data-th-field="*{clientId}">
-			</div>
 			
-			<div class="form-group">
-				<label for="reason">Reason</label>			
-				<select id = "reason" name = "reason" type="select" class="form-control" th:field="*{reason}">
-					 <option th:each="reason : ${reasons}" 
-					         th:value="${reason}" 
-					         th:text="${reason}">Reason</option>
-				</select>
-			</div>				
-			
-			<div class="form-group">
-				<label for="duration">Duration</label>
-	            <input id="duration" name="duration" type="number" class="form-control" data-th-field="*{duration}">
-			</div>
-			
-			<div class="form-group">
-				<label for="comments">Comments</label>
-	            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
-			</div>
-			
-			<div class="form-group">			
-				<button type="submit" form="appointmentForm" class="btn btn-primary"  value="Save">Save</button>
-			</div>			
-			
-			</form>
-		
 		</div>
 	</div>
 		
+		
+		<script type="text/javascript">
+		$('#dp1').datepicker({
+			format: 'mm-dd-yyyy'
+		});
+		</script>
 </body>
 </html>
 

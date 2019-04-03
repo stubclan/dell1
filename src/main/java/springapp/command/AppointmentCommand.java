@@ -1,8 +1,8 @@
 package springapp.command;
 
 import java.sql.Timestamp;
+
 import springapp.domain.Appointment;
-import springapp.domain.Client;
 import springapp.domain.Reason;
 
 /**
@@ -42,8 +42,6 @@ public class AppointmentCommand {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 	
 	public Integer getPetId() {
 		return petId;
@@ -92,4 +90,5 @@ public class AppointmentCommand {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+	
 }

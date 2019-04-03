@@ -14,17 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springapp.command.AppointmentCommand;
-import springapp.command.ClientCommand;
 import springapp.command.PetCommand;
 import springapp.domain.Appointment;
-import springapp.domain.Client;
 import springapp.domain.Pet;
 import springapp.domain.Reason;
 import springapp.service.AppointmentService;
-import springapp.service.PetService;
 
 
 @Controller
@@ -54,57 +52,43 @@ public class AppointmentController {
 	 @PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	 @GetMapping("/new")
 		 public String addAppointment(Model model) {
-
-
-		 // we could have used a different path for handling the create page but this approach uses the same
-        // template for both creating a new client and editing and existing client
-//	    if(id.equals("new")) {
-//	        // create an empty command object to merge with the view template
-//			model.addAttribute("command", new AppointmentCommand(null));
-//		} else {
-//	        // since we have a valid id, get the client object from the service
-//			Appointment appointment = appointmentService.getAppointment(id);
-//			// we create a client command that can be used when the browser sends the save object
-//			model.addAttribute("command", new AppointmentCommand(appointment));
-//
-//			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
-//            // from this page
-//			model.addAttribute("pet", appointmentService.getPet(appointment.getPetId()) );
-//			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
-//		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
-//		}
-
-		List<String> reasons = new ArrayList<String>();
-		
-		for(Reason reason : Reason.values()) {
-			reasons.add(reason.toString());
-		}
-		
+		 
+		 List<String> reasons = new ArrayList<String>();
+		 
+		 for (Reason reason: Reason.values()) {
+			 reasons.add(reason.toString());
+		 }
+		 
 		model.addAttribute("command", new AppointmentCommand(null));
+//		
 		model.addAttribute("reasons", reasons);
-
-
+		 
+//		 List<PetCommand> petCommands = new ArrayList<PetCommand>();
+//		 
+//		 for (Pet pet : appointmentService.getPets()) {
+//			 
+//			 PetCommand command = new PetCommand(pet.getClientId());
+//			 
+//			 petCommands.add(command);
+//		 }
+//			
+		model.addAttribute("pets", appointmentService.getPets());
 		return "appointments/addAppointment";
-	}
-	 
+	}	 
+
 	 @PreAuthorize("hasAuthority('GET_APPOINTMENT')")
 	 @GetMapping("/edit/{id}")
 		 public String getAppointment(@PathVariable("id") String id, Model model) {
-		
-	        // since we have a valid id, get the client object from the service
-			Appointment appointment = appointmentService.getAppointment(id);
-			// we create a client command that can be used when the browser sends the save object
-			model.addAttribute("command", new AppointmentCommand(appointment));
 
-			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
-            // from this page
-			model.addAttribute("pet", appointmentService.getPet(appointment.getPetId()) );
-			model.addAttribute("client", appointmentService.getClient(appointment.getClientId()) );
-		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
-		
+	        // since we have a valid id, get the appointment object from the service
+			Appointment appointment = appointmentService.getAppointment(id);
+			// we create a appointment command that can be used when the browser sends the save object
+			model.addAttribute("command", new AppointmentCommand(appointment));
+			
+
 		return "appointments/editAppointment";
-	} 
-	 
+	}
+
 
     /**
      * Create a new appointment
@@ -125,7 +109,7 @@ public class AppointmentController {
         return "redirect:/appointments/";    //TODO: +appointment.getId();
 
     }
-	
+
 	@PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
 	 @GetMapping("/delete/{id}")
 	 public String deleteAppointment(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {

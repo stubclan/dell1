@@ -48,7 +48,6 @@ public class PetDao {
 				"SELECT id, name, gender, altered, client_id FROM pets",
 				simplePetMapper);
 		
-		
 		return queryResult;
 	}
 	
