@@ -49,3 +49,30 @@ body{
 .add-button {
 	padding: 10px;
 }
+
+
+.jumbotron{
+	grid-area: jumbotron;
+}
+
+.logobox{
+	grid-area: logobox;
+	max-width: 200px;
+}
+
+#content{
+	display: grid; /* Using the grid */
+  	grid-template-areas: /* Notice how I've stacked my areas, just like they look on the page! */
+    "jumbotron"
+    "logobox"
+}
+
+@media (min-width: 576px) {
+  #content {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* the first column is 1 unit (fraction), the second column is 3 units */
+    grid-template-areas: /* stack the components how you want them to appear in the columns */
+      "jumbotron  logobox" /* stretch header across both columns at the top */
+  }
+}
+
