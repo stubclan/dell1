@@ -1,5 +1,9 @@
 /*Custom styles*/
 
+body{
+	 background-image: url("/img/pawprints.png")
+}
+
 .sidebar {
 	background-color: #343a40;
 	height: 100vh;
