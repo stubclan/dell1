@@ -1,6 +1,7 @@
 package springapp.service;
 
 
+import java.time.Duration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,15 +56,11 @@ public class AppointmentService {
 
 
 	public Appointment saveAppointment(AppointmentCommand command) {
-		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getTime(), command.getDuration(), command.getComments());
+		Duration duration = Duration.ofHours((long)command.getHour()).plusMinutes(command.getMinute());
+		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getTime(), duration, command.getComments());
 		return appointmentDao.save(newAppointment);
 	}
 
-
-	/*public Pet getPet(int petId) {
-
-		return petDao.get(petId);
-	}*/
 	
 	public List<Pet> getPets() {
 		return petDao.list();

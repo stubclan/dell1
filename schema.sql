@@ -29,7 +29,7 @@ CREATE TABLE appointments (
 	client_id INTEGER NOT NULL,
 	reason TEXT(255) NOT NULL,
 	appt_time DATETIME NOT NULL,
-	duration INTEGER DEFAULT 0 NOT NULL,
+	duration TIME NOT NULL,
 	comments TEXT(255)
 );
 

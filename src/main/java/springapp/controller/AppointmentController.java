@@ -1,6 +1,7 @@
 package springapp.controller;
 
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class AppointmentController {
 	@GetMapping
 	public String getAppointments(Model model) {
 
+		logger.info("Appointment Controller Get Appointments");
 		 List<Appointment> appointments = appointmentService.getAppointments();
 			model.addAttribute("appointments", appointments);
         return "appointments/listAppointments";
@@ -53,25 +55,26 @@ public class AppointmentController {
 	 @GetMapping("/new")
 		 public String addAppointment(Model model) {
 		 
+			logger.info("Appointment Controller Save Appointment");
+
+		 
 		 List<String> reasons = new ArrayList<String>();
 		 
 		 for (Reason reason: Reason.values()) {
 			 reasons.add(reason.toString());
-		 }
+		 }		 
 		 
 		model.addAttribute("command", new AppointmentCommand(null));
-//		
+
 		model.addAttribute("reasons", reasons);
-		 
-//		 List<PetCommand> petCommands = new ArrayList<PetCommand>();
-//		 
-//		 for (Pet pet : appointmentService.getPets()) {
-//			 
-//			 PetCommand command = new PetCommand(pet.getClientId());
-//			 
-//			 petCommands.add(command);
-//		 }
-//			
+		
+		int[] hours = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+		int[] minutes = {0, 15, 30, 45};		
+		
+		model.addAttribute("hours", hours);
+		
+		model.addAttribute("minutes", minutes);
+					
 		model.addAttribute("pets", appointmentService.getPets());
 		return "appointments/addAppointment";
 	}	 
@@ -98,8 +101,8 @@ public class AppointmentController {
      */
 	@PreAuthorize("hasAuthority('SAVE_APPOINTMENT')")
 	@PostMapping
-	 public String saveAppointment(AppointmentCommand command, RedirectAttributes redirectAttributes) {
-
+	public String saveAppointment(AppointmentCommand command, RedirectAttributes redirectAttributes) {
+		
         // we pass in the appointment command to the service to update or create a new appointment
         // Appointment appointment = appointmentService.saveAppointment(command);
 		appointmentService.saveAppointment(command);
@@ -113,6 +116,9 @@ public class AppointmentController {
 	@PreAuthorize("hasAuthority('DELETE_APPOINTMENT')")
 	 @GetMapping("/delete/{id}")
 	 public String deleteAppointment(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
+		
+		logger.info("Appointment Controller Delete Appointment");
+
         // NOTE to handle exceptions, we would wrap the following code in a try/catch
         // and in the catch forward to a different page
 

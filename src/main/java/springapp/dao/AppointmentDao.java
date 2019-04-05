@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -45,7 +47,11 @@ public class AppointmentDao {
 				reason = Reason.Checkup;
 			}
 			
-			return new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("client_id"), reason, rs.getTimestamp("appt_time"), rs.getInt("duration"), rs.getString("comments"));
+			java.sql.Time sqlTime = rs.getTime("duration");
+			LocalTime localTime = sqlTime.toLocalTime();
+			Duration duration = Duration.between(LocalTime.MIDNIGHT, localTime);
+			
+			return new Appointment(rs.getInt("id"), rs.getInt("pet_id"), rs.getInt("client_id"), reason, rs.getTimestamp("appt_time"), duration, rs.getString("comments"));
 		}
 	};	
 	
@@ -86,12 +92,17 @@ public class AppointmentDao {
 				
 				@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					
+					Duration duration = appointment.getDuration();
+					LocalTime localTime = LocalTime.MIDNIGHT.plus(duration);
+					java.sql.Time sqlTime = java.sql.Time.valueOf(localTime);
+					
 					PreparedStatement statement = con.prepareStatement("INSERT INTO appointments(pet_id, client_id, reason, appt_time, duration, comments) VALUES (?, ?, ?, ?, ?, ?)");
 					statement.setInt(1, appointment.getPetId());
 					statement.setInt(2, appointment.getClientId());
 					statement.setString(3, appointment.getReason().toString());
 					statement.setTimestamp(4, appointment.getTime());
-					statement.setInt(5, appointment.getDuration());
+					statement.setTime(5, sqlTime);
 					statement.setString(6, appointment.getComments());
 					return statement;
 				}

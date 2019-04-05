@@ -1,6 +1,7 @@
 package springapp.command;
 
 import java.sql.Timestamp;
+import java.time.Duration;
 
 import springapp.domain.Appointment;
 import springapp.domain.Reason;
@@ -16,7 +17,8 @@ public class AppointmentCommand {
 	private Integer clientId;
 	private Reason reason;
 	private Timestamp time;
-	private Integer duration;
+	private int hour;
+	private int minute;
 	private String comments;
 	
 	/**
@@ -30,7 +32,8 @@ public class AppointmentCommand {
 			this.clientId = appointment.getClientId();
 			this.reason = appointment.getReason();
 			this.time = appointment.getTime();
-			this.duration = appointment.getDuration();
+			this.hour = (int)appointment.getDuration().toHours();
+			this.minute = (int)appointment.getDuration().toMinutes();
 			this.comments = appointment.getComments();
 		}
 	}
@@ -75,12 +78,20 @@ public class AppointmentCommand {
 		this.time = time;
 	}
 
-	public Integer getDuration() {
-		return duration;
+	public int getHour() {
+		return hour;
 	}
 
-	public void setDuration(Integer duration) {
-		this.duration = duration;
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	
+	public int getMinute() {
+		return minute;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
 	}
 
 	public String getComments() {

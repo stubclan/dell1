@@ -60,6 +60,11 @@
 									</div>
 									
 									<div class="form-group">
+										<label for="petId">Pet</label>
+							            <input id="petId" name="petId" type="number" class="form-control" data-th-field="*{petId}" data-th-value="${petId}">
+									</div>
+									
+									<div class="form-group">
 										<label for="reason">Reason</label>			
 										<select id = "reason" name = "reason" type="select" class="form-control" th:field="*{reason}">
 											 <option th:each="reason : ${reasons}" 
@@ -69,9 +74,27 @@
 									</div>				
 									
 									<div class="form-group" data-provide="datepicker">
-										<label for="duration">Date</label>
-							            <input id="#dp1" class="form-control" data-th-field="*{duration}">
+										<label for="duration">Duration</label>	
+										<div class="col-md-6">
+											<label for="hours">Hours</label>										
+												<select id = "hours" name = "hour" type="select" class="form-control" data-th-field="*{hour}">
+													 <option th:each="hour : ${hours}" 
+													         th:value="${hour}" 
+													         th:text="${hour}">Hours</option>
+												</select>						
+										</div>
+										<div class="col-md-6">
+											<label for="minutes">Minute</label>										
+								            	<select id = "minutes" name = "minute" type="select" class="form-control" data-th-field="*{minute}">
+													 <option th:each="minute : ${minutes}" 
+													         th:value="${minute}" 
+													         th:text="${minute}">Minutes</option>
+												</select>
+										</div>
+										
 									</div>
+									
+									
 									
 			<!-- 						<div class="form-group">
 										<label for="duration">Duration</label>
