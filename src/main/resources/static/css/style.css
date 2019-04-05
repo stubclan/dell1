@@ -39,7 +39,14 @@ body{
 }
 
 .loginControl {
-	align: center;
+	padding:10px;
+	box-sizing: border-box;	
+}
+
+.loginControl h1 {
+	margin-bottom: 10px;
+}
+.loginForm {
 }
 
 .loginControl .row {
@@ -48,4 +55,29 @@ body{
 
 .add-button {
 	padding: 10px;
+}
+
+.appointmentCollapse .button {
+	margin: 10px;
+}	
+
+.delete-bg {
+	padding: 10px;
+	color: white;
+}
+
+.form-custom {
+	margin: 10px auto;
+}
+
+.loginImage {
+	background: black;
+}
+
+.banner {
+	background-color: #e9ecef;
+}
+
+.banner img {
+	border: 2px solid #e9ecef;
 }

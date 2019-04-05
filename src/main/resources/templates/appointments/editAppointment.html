@@ -7,40 +7,48 @@
 	<div class="row">
 		<header th:replace="fragments/header.html :: header" >
 		</header>
-		<div id="mainBody" class="">
-			<form class="" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
-			
-			<div class="">
-				<label for="appointmentId">Appointment ID:</label>
-	            <input id="appointmentId" name="id" type="number" data-th-field="*{id}" value="">
+		<div id="mainBody" class="col-md-8 col-sm-8" data-th-fragment="head">
+		<div class="jumbotron">
+				<h1>Edit Appointment</h1>
+			<p class="lead">
+				Edit your appointment here
+			</p>
 			</div>
+			<form class="col-md-4" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+			
+				<!-- Hidden items -->
+	            <input id="appointmentId" name="id" type="hidden" data-th-field="*{id}" value="">
+      	        <input id="petId" name="petId" type="hidden" data-th-field="*{petId}" value="">
+	            <input id="petId" name="petId" type="hidden" data-th-field="*{clientId}" value="">
+      	        
+	            
 						
-			<div class="">
-				<label for="petId">Pet</label>
-	            <input id="petId" name="petId" type="number" data-th-field="*{petId}" value="">
+			<div class="form-group">
+				<label for="petName">Pet Name</label>
+	            <span data-th-text = "${petName}" class="form-control" readonly></span>
 			</div>
 			
-			<div class="">
-				<label for="clientId">Client</label>
-	            <input id="clientId" name="clientId" type="number" data-th-field="*{clientId}">
+			<div class="form-group">
+				<label for="clientName">Client Name</label>
+	            <span data-th-text = "${clientName}" class="form-control" readonly></span>
 			</div>
 			
-			<div class="">
+			<div class="form-group">
 				<label for="reason">Reason</label>
-	            <input id="reason" name="reason" type="text" data-th-field="*{reason}">
+	            <input id="reason" name="reason" type="text" class="form-control" data-th-field="*{reason}">
 			</div>
 			
-			<div class="">
+			<div class="form-group">
 				<label for="duration">Duration</label>
-	            <input id="duration" name="duration" type="number" data-th-field="*{duration}">
+	            <input id="duration" name="duration" type="number" class="form-control"  data-th-field="*{duration}">
 			</div>
 			
-			<div class="">
+			<div class="form-group">
 				<label for="comments">Comments</label>
-	            <input id="comments" name="comments" type="text" data-th-field="*{comments}">
+	            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
 			</div>
 			
-			<div class="">			
+			<div class="form-group">			
 				<button type="submit" form="appointmentForm" class="button"  value="Save">Save</button>
 			</div>
 

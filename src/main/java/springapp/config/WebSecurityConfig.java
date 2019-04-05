@@ -22,7 +22,7 @@ import springapp.service.SecurityService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-   
+
 	@Autowired
 	private SecurityService securityService;
 
@@ -31,12 +31,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 *
 	 * {@inheritDoc}
 	 */
-	@Override 
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
 				// allow pages under the css folder and home page to be accessible to every on
-                .antMatchers("/css/*","/", "/css/bootstrap/*","/img/*").permitAll()
+                .antMatchers("/css/*","/", "/css/bootstrap/*","/js/bootstrap/*","/js/*","/img/*").permitAll()
+
 				// but all other pages should only be accessible for logged in users
 				.anyRequest().authenticated()
             .and()
@@ -53,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll(); // all users are allowed to logout
     }
 
-	
+
 	/**
 	 * Configure the password encoder
 	 * @return the password encoder to use when encoding user passwords
@@ -61,8 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 
-		
-		// we are using the NoPasswordEncoder because we want the passwords to be in clear 
+
+		// we are using the NoPasswordEncoder because we want the passwords to be in clear
 		// in production applications this would be a very bad idea
         // and we would use something like the BCryptPasswordEncoder.
         // Using the BcryptPasswordEncoder, will hash the password the user types in,
@@ -74,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//return new BCryptPasswordEncoder();
 
 	}
-	
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
     	DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
