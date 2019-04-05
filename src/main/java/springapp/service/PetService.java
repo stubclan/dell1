@@ -31,6 +31,10 @@ public class PetService {
 		return petDao.get(Integer.parseInt(id));
 	}
 	
+	public Pet getPet(int id) {
+		return petDao.get(id);
+	}
+	
 	public Pet savePet(PetCommand command) {
 		Pet newPet = new Pet(command.getId(), command.getName(), command.getGender(), command.isAltered(), command.getClientId());
 		return petDao.save(newPet);

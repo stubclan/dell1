@@ -58,6 +58,8 @@ public class AppointmentService {
 		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getTime(), command.getDuration(), command.getComments());
 		return appointmentDao.save(newAppointment);
 	}
+	
+	
 
 
 	/*public Pet getPet(int petId) {

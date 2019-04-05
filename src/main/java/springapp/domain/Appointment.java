@@ -1,7 +1,13 @@
 package springapp.domain;
 import java.sql.Timestamp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import springapp.dao.AppointmentDao;
+import springapp.service.ClientService;
+
 public class Appointment {
+	
 	private final Integer id;
 	private final Integer petId;
 	private final Integer clientId;
@@ -9,7 +15,7 @@ public class Appointment {
 	private Timestamp time;
 	private Integer duration;
 	private String comments;
-	
+
 	public Appointment(Integer myId, Integer myPetId, Integer myClientId, Reason myReason, Timestamp myApptTime, Integer myDuration, String myComments){
 		
 		this.id = myId;
@@ -19,7 +25,6 @@ public class Appointment {
 		this.time = new Timestamp(System.currentTimeMillis());
 		this.duration = myDuration;
 		this.comments = myComments;
-		
 	}
 	
 	public Reason getReason() {
