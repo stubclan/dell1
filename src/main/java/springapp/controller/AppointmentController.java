@@ -1,6 +1,7 @@
 package springapp.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import springapp.command.PetCommand;
 import springapp.domain.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
+import springapp.domain.Reason;
 import springapp.service.AppointmentService;
 import springapp.service.PetService;
 
@@ -72,7 +74,15 @@ public class AppointmentController {
 //		//	model.addAttribute("client", appointmentService.getClient(appointment.getId()) );
 //		}
 
+		List<String> reasons = new ArrayList<String>();
+		
+		for(Reason reason : Reason.values()) {
+			reasons.add(reason.toString());
+		}
+		
 		model.addAttribute("command", new AppointmentCommand(null));
+		model.addAttribute("reasons", reasons);
+
 
 		return "appointments/addAppointment";
 	}

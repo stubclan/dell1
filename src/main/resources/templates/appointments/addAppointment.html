@@ -7,39 +7,48 @@
 	<div class="row">
 		<header th:replace="fragments/header.html :: header" >
 		</header>
-		<div id="mainBody" class="">
-			<form class="" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+		<div id="mainBody" class="col-md-8">
+			<div class="jumbotron">
+				<h1>Add Appointment</h1>
+			<p class="lead">
+				Add your appointment here
+			</p>
+			</div>
 			
-			<div class="">
+			<form class="col-md-4" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+			
+			<div class="form-group">
 				<label for="petId">Pet</label>
-	            <input id="petId" name="petId" type="number" data-th-field="*{petId}">
+	            <input id="petId" name="petId" type="number" class="form-control" data-th-field="*{petId}">
 			</div>
 			
-			<div class="">
+			<div class="form-group">
 				<label for="clientId">Client</label>
-	            <input id="clientId" name="clientId" type="number" data-th-field="*{clientId}">
+	            <input id="clientId" name="clientId" type="number" class="form-control" data-th-field="*{clientId}">
 			</div>
 			
-			<div class="">
-				<label for="reason">Reason</label>
-	            <input id="reason" name="reason" type="text" data-th-field="*{reason}">
-			</div>
+			<div class="form-group">
+				<label for="reason">Reason</label>			
+				<select id = "reason" name = "reason" type="select" class="form-control" th:field="*{reason}">
+					 <option th:each="reason : ${reasons}" 
+					         th:value="${reason}" 
+					         th:text="${reason}">Reason</option>
+				</select>
+			</div>				
 			
-			<div class="">
+			<div class="form-group">
 				<label for="duration">Duration</label>
-	            <input id="duration" name="duration" type="number" data-th-field="*{duration}">
+	            <input id="duration" name="duration" type="number" class="form-control" data-th-field="*{duration}">
 			</div>
 			
-			<div class="">
+			<div class="form-group">
 				<label for="comments">Comments</label>
-	            <input id="comments" name="comments" type="text" data-th-field="*{comments}">
+	            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
 			</div>
 			
-			<div class="">			
-				<button type="submit" form="appointmentForm" class="button"  value="Save">Save</button>
-			</div>
-
-			
+			<div class="form-group">			
+				<button type="submit" form="appointmentForm" class="btn btn-primary"  value="Save">Save</button>
+			</div>			
 			
 			</form>
 		
