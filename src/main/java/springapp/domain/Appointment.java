@@ -2,7 +2,13 @@ package springapp.domain;
 import java.sql.Timestamp;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import springapp.dao.AppointmentDao;
+import springapp.service.ClientService;
+
 public class Appointment {
+	
 	private final Integer id;
 	private final Integer petId;
 	private final Integer clientId;
@@ -20,7 +26,6 @@ public class Appointment {
 		this.time = new Timestamp(System.currentTimeMillis());
 		this.duration = myDuration;
 		this.comments = myComments;
-		
 	}
 	
 	public Reason getReason() {

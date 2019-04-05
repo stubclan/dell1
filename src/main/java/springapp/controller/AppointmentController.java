@@ -21,9 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springapp.command.AppointmentCommand;
 import springapp.command.PetCommand;
 import springapp.domain.Appointment;
+import springapp.domain.Client;
 import springapp.domain.Pet;
 import springapp.domain.Reason;
 import springapp.service.AppointmentService;
+import springapp.service.ClientService;
+import springapp.service.PetService;
 
 
 @Controller
@@ -35,13 +38,32 @@ public class AppointmentController {
 	// injecting in an AppointmentService instance
     @Autowired
 	AppointmentService appointmentService;
+    @Autowired
+	ClientService clientService;
+    @Autowired
+	PetService petService;
 
 	@GetMapping
 	public String getAppointments(Model model) {
 
 		logger.info("Appointment Controller Get Appointments");
-		 List<Appointment> appointments = appointmentService.getAppointments();
-			model.addAttribute("appointments", appointments);
+//		 List<Appointment> appointments = appointmentService.getAppointments();
+			
+			List<AppointmentCommand> appointmentCommands = new ArrayList<AppointmentCommand>();
+			 
+			 for (Appointment appointment: appointmentService.getAppointments()) {
+				 			 
+				 AppointmentCommand command = new AppointmentCommand(appointment);	
+				 command.setPetName(petService.getPet(appointment.getPetId()).getName());
+
+				 command.setClientName(clientService.getClient(appointment.getClientId()).getName());
+				 
+				 appointmentCommands.add(command);
+			 }
+			 
+				model.addAttribute("appointments", appointmentCommands);
+
+			
         return "appointments/listAppointments";
 
    }
@@ -64,6 +86,8 @@ public class AppointmentController {
 			 reasons.add(reason.toString());
 		 }		 
 		 
+		 
+		 
 		model.addAttribute("command", new AppointmentCommand(null));
 
 		model.addAttribute("reasons", reasons);
@@ -76,6 +100,24 @@ public class AppointmentController {
 		model.addAttribute("minutes", minutes);
 					
 		model.addAttribute("pets", appointmentService.getPets());
+		//All this carpet just to get Client name displayed. How to make it concise?
+		 
+		 List<PetCommand> petCommands = new ArrayList<PetCommand>();
+		 
+		 for (Pet pet : appointmentService.getPets()) {
+			 			 
+			 PetCommand command = new PetCommand(pet);
+			 Client client = clientService.getClient(command.getClientId());		 
+			 //logger.error(client.name);
+			 command.setClient(client);			 
+			 
+			 petCommands.add(command);
+		 }
+//			
+		 if (!petCommands.isEmpty()) {
+			 model.addAttribute("petCommands", petCommands);
+		 }		
+		
 		return "appointments/addAppointment";
 	}	 
 
@@ -87,6 +129,9 @@ public class AppointmentController {
 			Appointment appointment = appointmentService.getAppointment(id);
 			// we create a appointment command that can be used when the browser sends the save object
 			model.addAttribute("command", new AppointmentCommand(appointment));
+			model.addAttribute("petName", petService.getPet(appointment.getPetId()).getName());
+			model.addAttribute("clientName", clientService.getClient(appointment.getClientId()).getName());
+
 			
 
 		return "appointments/editAppointment";
@@ -105,8 +150,14 @@ public class AppointmentController {
 		
         // we pass in the appointment command to the service to update or create a new appointment
         // Appointment appointment = appointmentService.saveAppointment(command);
+		
+		//logger.error("PET ID FROM SAVE" + command);
+//		if (command != null) {
+//			appointmentService.saveAppointment(command);
+//			redirectAttributes.addAttribute("saved", true);
+//		}
+		
 		appointmentService.saveAppointment(command);
-
         redirectAttributes.addAttribute("saved", true);
         //TODO: redirectAttributes.addAttribute("clientId", appointment.getAppointmentId());
         return "redirect:/appointments/";    //TODO: +appointment.getId();

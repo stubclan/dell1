@@ -8,16 +8,12 @@
 		<header th:replace="fragments/header.html :: header" >
 		</header>
 		<div id="mainBody" class="col-md-8">
-			<div class="jumbotron">
-				<h1>Add Appointment</h1>
-			<p class="lead">
-				Add your appointment here
-			</p>
-			</div>
 			
 			<div class="container">
-			<a class="btn btn-info btn-width" data-th-href="@{/pets/new/}">Add a new Pet</a>									
-			<a class="btn btn-info btn-width" data-th-href="@{/clients/new}">Add a new Client</a>	
+<!-- 			<a class="btn btn-info btn-width" data-th-href="@{/pets/new/}">Add a new Pet</a>									
+ -->			<a class="btn btn-info btn-width" data-th-href="@{/clients/new}">Add a new Client</a>
+ 
+  <!-- Form for the modal starts here -->
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -130,9 +126,7 @@
 		
 		
 		<script type="text/javascript">
-		$('#dp1').datepicker({
-			format: 'mm-dd-yyyy'
-		});
+		$('#dp1').datepicker();
 		</script>
 </body>
 </html>

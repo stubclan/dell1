@@ -3,8 +3,11 @@ package springapp.command;
 import java.sql.Timestamp;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import springapp.domain.Appointment;
 import springapp.domain.Reason;
+import springapp.service.ClientService;
 
 /**
  * This command class is used to pass information back and force between the client and the server
@@ -21,6 +24,11 @@ public class AppointmentCommand {
 	private int minute;
 	private String comments;
 	
+	private String clientName;
+	private String petName;
+
+
+	
 	/**
 	 * Creates a command object that has the initial values the same as the appointment passed in
 	 * @param appointment the appointment to initialize the command object with
@@ -35,6 +43,7 @@ public class AppointmentCommand {
 			this.hour = (int)appointment.getDuration().toHours();
 			this.minute = (int)appointment.getDuration().toMinutes();
 			this.comments = appointment.getComments();
+
 		}
 	}
 	
@@ -100,6 +109,22 @@ public class AppointmentCommand {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	
+	public String getClientName() {
+		return this.clientName;
+	}
+	
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	
+	public String getPetName() {
+		return this.petName;
+	}
+	
+	public void setPetName(String petName) {
+		this.petName = petName;
 	}
 	
 }

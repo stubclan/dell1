@@ -14,7 +14,7 @@ public class PetCommand {
 	private boolean altered;
 	private Gender gender;
 	private Integer clientId;
-	private Client client;
+	private Client client; //Just checking if this is the issue
 
 	/**
 	 * Initialise an empty pet command with the client id set
@@ -117,6 +117,8 @@ public class PetCommand {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
+	
+
 
 	/**
 	 * @return the client object associated with the pet

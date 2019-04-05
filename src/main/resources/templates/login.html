@@ -7,11 +7,14 @@
 		<div class="row">
 			<header th:replace="fragments/header.html :: header" >
 			</header>
-			<div id="mainBody" class="col-md-8 col-sm-8 ">
-				<div id="loginBox" class="jumbotron loginControl">
-					<h1>Welcome to Scheduler Application</h1>
-				
-					<div class="loginControl">
+			<div id="mainBody" class="col-md-10 col-sm-10 ">
+				<div class="loginImage text-center">
+							<img src="/img/paws-bg.jpg" class="img-fluid" alt="Responsive image">
+					</div>
+				<div id="loginBox" class="jumbotron">
+					<h1 class="text-center">Welcome to the PAWS Veterinary Services.</h1>
+					<hr />
+					<div class="loginControl text-center">
 						
 						<div data-th-if="${param.error}" class="p-3 mb-2 bg-danger text-white">
 					        Invalid username and password
@@ -19,18 +22,22 @@
 					    <div data-th-if="${param.logout}" class="p-3 mb-2 bg-info text-white">
 					        You have been logged out
 					    </div>
-						<form data-th-action="@{/login}" method="post" class="form-signin">
+					    <div class="logo-image">
+							<img src="/img/paw.png" class="img-fluid" alt="Responsive image" width="100px" height="100px">
+						</div>
+					    <h5 class="text-center">Login below:</h5>
+						<form class="form-signin form-custom col-md-3 text-center col-sm-12" data-th-action="@{/login}" method="post">
 						    
-					       <div class="row">
+					       <div class="form-group">
 					            <label class="sr-only" for="username">Username: </label>
 					            <input id="username" class="form-control" name="username" type="text" placeholder="Username">
 					        </div>
 			
-					        <div class="row">
+					        <div class="form-group">
 					            <label for="password" class="sr-only">Password: </label>
 					            <input id="password" class="form-control" name="password" type="password" placeholder="Password">
 					        </div>
-					        <div class="row">
+					        <div class="form-group">
 			      	            <button type="submit" class="btn btn-success">Sign In</button>
 				        	</div>
 						</form>
