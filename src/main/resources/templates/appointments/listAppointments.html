@@ -42,8 +42,8 @@
 								<tr data-th-each="appointment : ${appointments}">
 									<td data-th-text="${appointment.id}">...</td>		
 									<td data-th-text="${appointment.time}">...</td>		
-								    <td data-th-text="${appointment.duration}">...</td>			
-								    <td data-th-text="${appointment.clientName}">...</td>	
+								    <td data-th-text="${appointment.hour} + 'hr ' + ${appointment.minute} + 'min'">...</td>			
+								    <td data-th-text="${appointment.clientName}">...</td>
                                     <td data-th-text="${appointment.petName}">...</td>	
 									<td data-th-text="${appointment.reason}">...</td>					
 									<td data-th-text="${appointment.comments}">...</td>	
@@ -79,10 +79,9 @@
 							            <span data-th-text = "${appointment.reason}" class="form-control" readonly></span>
 									</div>
 									
-									<div class="form-group">
-										<label for="duration">Client Name</label>
-							            <span data-th-text = "${appointment.duration}" class="form-control" readonly></span>
-									</div>
+									
+									
+									
 									
 									<div class="form-group">
 										<label for="comments">Client Name</label>
