@@ -1,39 +1,64 @@
 <!DOCTYPE HTML>
 <html>
-<header th:replace="fragments/head.html :: head" >
-</header>
+<header th:replace="fragments/head.html :: head"> </header>
 <body>
-	<div id="container" class="container-fluid" >
-	<div class="row">
-		<header th:replace="fragments/header.html :: header" >
-		</header>
-		<div id="mainBody" class="pure-u pure-g column">
-			<div id="content" class="pure-u-1">
-				<div class="pad">
-				    <div data-th-if="${deleted}" class="message-box-info">
-						Deleted successfully
-				    </div>
-					<table class="fullWidth pure-table pure-table-horizontal">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>Name</th>
-								<th>Gender</th>
-							</tr>
-						</thead>
-						<tbody>	
-							<tr data-th-each="pet : ${pets}">
-								<td> <a data-th-href="@{/pets/{id}(id=${pet.id})}" data-th-text="${pet.id}">...</a></td>
-								<td data-th-text="${pet.name}">...</td>
-								<td data-th-text="${pet.gender}">...</td>
-							</tr>
-						</tbody>
-					</table>
+	<div id="container" class="container-fluid">
+		<div class="row">
+			<header th:replace="fragments/header.html :: header"> </header>
+			<div id="mainBody" class="pure-u pure-g column">
+				<div id="content" class="pure-u-1">
+					<div class="pad">
+						<div data-th-if="${deleted}" class="message-box-info">
+							Deleted successfully</div>
+						<table class="fullWidth pure-table pure-table-horizontal">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Name</th>
+									<th>Gender</th>
+									<th>Altered?</th>
+								<!-- 	<th>Client Id</th>  -->
+									<th>Client Name</th>
+									<th></th>
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr data-th-each="pet : ${pets}">
+									<td><a data-th-href="@{/pets/{id}(id=${pet.id})}"
+										data-th-text="${pet.id}">...</a></td>
+									<td data-th-text="${pet.name}">...</td>
+									<td data-th-text="${pet.gender}">...</td>
+									<td><input data-th-if="${pet.altered} == true"
+										id="altered" name="altered" type="checkbox" checked /> <input
+										data-th-if="${pet.altered} == false" id="altered"
+										name="altered" type="checkbox" /></td>
+
+								<!-- 	<td><a data-th-href="@{/clients/{e}(e=${pet.clientId})}"
+										data-th-text="${pet.clientId}"> client </a></td>  -->
+
+
+									<td><a data-th-each="client : ${clients}"
+										data-th-if="${pet.clientId} == ${client.id}"
+										data-th-href="@{/clients/{e}(e=${client.id})}"
+										data-th-value="${client.id}" data-th-text="${client.name}">...</a></td>
+
+									<td><a class="btn btn-success btn-width"
+										data-th-href="@{/pets/{e}(e=${pet.id})}">Edit</a></td>
+									<td><a class="btn btn-danger btn-width"
+										data-th-href="@{/pets/{c}/delete(c=${pet.id})}">Delete</a></td>
+
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-    </div>
-    </div>
+	</div>
 </body>
 </html>
 

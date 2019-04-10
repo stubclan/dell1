@@ -30,7 +30,9 @@
 	
 							<div class="pure-control-group">
 					            <label>Client</label>
-					            <span data-th-text="${command.client.name}"> client </span>
+					           <!--  <span data-th-text="${command.client.name}"> client </span> --> 
+					            
+					            	<a data-th-href="@{/clients/{e}(e=${command.client.id})}" data-th-text="${command.client.name}"> client </a>
 					        </div>
 					        
 							<div class="pure-control-group">
