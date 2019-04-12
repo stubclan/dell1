@@ -1,7 +1,7 @@
 /*Custom styles*/
 
 body{
-	 background-image: url("/img/pawprints.png")
+	 background-image: url("/img/pawprints.png");
 }
 
 .sidebar {
@@ -64,6 +64,7 @@ body{
 .delete-bg {
 	padding: 10px;
 	color: white;
+	opacity: 0.6;
 }
 
 .form-custom {
@@ -80,4 +81,16 @@ body{
 
 .banner img {
 	border: 2px solid #e9ecef;
+}
+
+#mainBody {
+	background-color: rgba(233, 236, 239, 0.8);
+}
+
+#mainBody .container {
+		
+}
+
+.mainContent {
+	
 }

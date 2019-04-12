@@ -1,4 +1,4 @@
-package springapp.dao;
+package springapp.appointments;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,11 +17,11 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import springapp.domain.Appointment;
+import springapp.appointments.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Gender;
 import springapp.domain.Pet;
-import springapp.domain.Reason;
+import springapp.appointments.Reason;
 
 /**
  * This is the appointment dao that is responsible for managing the clients info in the databsae.

@@ -9,22 +9,25 @@
 			<header data-th-replace="fragments/header.html :: header" >
 			</header>
 			<div id="mainBody" class="col-md-10 col-sm-10">
-			<div class="banner text-center">
-						<img src="/img/paws-banner-white.jpg" class="img-fluid" alt="Responsive image">
-				</div>
+			<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+				    <div class="px-0">
+				      <h1 class="display-1 font-bold">PAWS</h1>
+				      <p class="lead mb-0"><span class="text-white font-weight-bold">Veterinary Services</span></p>
+				    </div>
+				  </div>
 				<div id="content" class="container">
 					<div class="row">
 						<a class="button btn-info add-button"  data-th-href="@{'/appointments/new'}">Add Appointment</a>
 					</div>
 					<div class="row">
-					    <div data-th-if="${deleted}" class="delete-bg row text-white bg-danger">
+					    <div data-th-if="${deleted}" class="delete-bg row text-white bg-danger col-md-12 col-sm-12">
 							Deleted successfully
 					    </div>
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">Id</th>
-									<th scope="col">Time</th>
+<!-- 									<th scope="col">Id</th>
+ -->									<th scope="col">Time</th>
 									<th scope="col">Duration</th>
 									<th scope="col">Client Name</th>
 							<!-- 	<th scope="col">Client Name</th>   -->
@@ -39,13 +42,13 @@
 								</tr>
 							</thead>
 							<tbody>	
+							
 								<tr data-th-each="appointment : ${appointments}">
-									<td data-th-text="${appointment.id}">...</td>		
-									<td data-th-text="${appointment.time}">...</td>		
+									<td id="apptTime" data-th-text="${appointment.dateTime}">...</td>	
 								    <td data-th-text="${appointment.duration}">...</td>			
 								    <td data-th-text="${appointment.clientName}">...</td>	
                                     <td data-th-text="${appointment.petName}">...</td>	
-									<td data-th-text="${appointment.reason}">...</td>					
+									<td data-th-text="${appointment.reason}">...</td>
 									<td data-th-text="${appointment.comments}">...</td>	
 									<td><a class="btn btn-success btn-width" data-th-href="@{/appointments/edit/{e}(e=${appointment.id})}">Edit</a></td>										
 <!-- 									<td><a class="btn btn-danger btn-width" data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}">Delete</a></td>
@@ -75,12 +78,12 @@
 									</div>
 									
 									<div class="form-group">
-										<label for="reason">Client Name</label>
+										<label for="reason">Reason</label>
 							            <span data-th-text = "${appointment.reason}" class="form-control" readonly></span>
 									</div>
 									
 									<div class="form-group">
-										<label for="duration">Client Name</label>
+										<label for="duration">Duration</label>
 							            <span data-th-text = "${appointment.duration}" class="form-control" readonly></span>
 									</div>
 									
@@ -95,7 +98,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-								        <a type="button"  data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}" class="btn btn-danger">Delete</a>
+								        <a class="btn btn-danger" data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}"role="button">Delete</a>
 								      </div>
 								    </div>
 								  </div>
@@ -104,6 +107,7 @@
 														
 															
 								</tr>
+								<tr data-th-if="${appointments == null}">No appointments!</tr>
 							</tbody>
 						</table>
 					</div>
@@ -112,6 +116,10 @@
 			</div>
 		</div>
     </div>
+    
+    <script src="text/javscript">
+    	
+    </script>
 </body>
 </html>
 

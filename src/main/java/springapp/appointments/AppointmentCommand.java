@@ -1,11 +1,18 @@
-package springapp.command;
+package springapp.appointments;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import springapp.domain.Appointment;
-import springapp.domain.Reason;
+import springapp.appointments.Appointment;
+import springapp.appointments.Reason;
 import springapp.service.ClientService;
 
 /**
@@ -18,15 +25,17 @@ public class AppointmentCommand {
 	private Integer petId;
 	private Integer clientId;
 	private Reason reason;
-	private Timestamp time;
-	private Integer duration;
+	private Timestamp dateTime;
+	private String duration;
 	private String comments;
 	
 	private String clientName;
 	private String petName;
-
+	
 
 	
+	
+
 	/**
 	 * Creates a command object that has the initial values the same as the appointment passed in
 	 * @param appointment the appointment to initialize the command object with
@@ -37,8 +46,8 @@ public class AppointmentCommand {
 			this.petId = appointment.getPetId();
 			this.clientId = appointment.getClientId();
 			this.reason = appointment.getReason();
-			this.time = appointment.getTime();
-			this.duration = appointment.getDuration();
+			this.dateTime = appointment.getTime();
+			this.duration = appointment.getDuration().toString();
 			this.comments = appointment.getComments();
 
 		}
@@ -52,6 +61,8 @@ public class AppointmentCommand {
 		this.id = id;
 	}
 	
+	
+	
 	public Integer getPetId() {
 		return petId;
 	}
@@ -59,6 +70,7 @@ public class AppointmentCommand {
 	public void setPetId(Integer petId) {
 		this.petId = petId;
 	}
+
 	
 	public Integer getClientId() {
 		return clientId;
@@ -76,20 +88,31 @@ public class AppointmentCommand {
 		this.reason = reason;
 	}
 
-	public Timestamp getTime() {
-		return time;
+	public Timestamp getDateTime() {
+				
+		return dateTime;
+		
 	}
 
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setDateTime(Timestamp time) {
+		this.dateTime = time;
 	}
 
-	public Integer getDuration() {
-		return duration;
+	public String getDuration() {
+		int hour = Integer.parseInt(duration) / 60;
+		int minute = Integer.parseInt(duration) % 60;
+
+		
+		String durationString = hour + "hrs " + minute + "mins.";
+		return durationString;
+	}
+	
+	public Integer getDurationInt() {
+		return Integer.parseInt(duration);
 	}
 
 	public void setDuration(Integer duration) {
-		this.duration = duration;
+		this.duration = duration.toString();
 	}
 
 	public String getComments() {

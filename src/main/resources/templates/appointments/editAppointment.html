@@ -7,57 +7,89 @@
 	<div class="row">
 		<header th:replace="fragments/header.html :: header" >
 		</header>
-		<div id="mainBody" class="col-md-8 col-sm-8" data-th-fragment="head">
-		<div class="jumbotron">
-				<h1>Edit Appointment</h1>
-			<p class="lead">
-				Edit your appointment here
-			</p>
-			</div>
-			<form class="col-md-4" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
-			
-				<!-- Hidden items -->
-	            <input id="appointmentId" name="id" type="hidden" data-th-field="*{id}" value="">
-      	        <input id="petId" name="petId" type="hidden" data-th-field="*{petId}" value="">
-	            <input id="petId" name="petId" type="hidden" data-th-field="*{clientId}" value="">
-      	        
-	            
-						
-			<div class="form-group">
-				<label for="petName">Pet Name</label>
-	            <span data-th-text = "${petName}" class="form-control" readonly></span>
-			</div>
-			
-			<div class="form-group">
-				<label for="clientName">Client Name</label>
-	            <span data-th-text = "${clientName}" class="form-control" readonly></span>
-			</div>
-			
-			<div class="form-group">
-				<label for="reason">Reason</label>
-	            <input id="reason" name="reason" type="text" class="form-control" data-th-field="*{reason}">
-			</div>
-			
-			<div class="form-group">
-				<label for="duration">Duration</label>
-	            <input id="duration" name="duration" type="number" class="form-control"  data-th-field="*{duration}">
-			</div>
-			
-			<div class="form-group">
-				<label for="comments">Comments</label>
-	            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
-			</div>
-			
-			<div class="form-group">			
-				<button type="submit" form="appointmentForm" class="button"  value="Save">Save</button>
-			</div>
+		<div id="mainBody" class="col-md-10 col-sm-10" data-th-fragment="head">
+			<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+				    <div class="px-0">
+				      <h1 class="display-1 font-bold">PAWS</h1>
+				      <p class="lead mb-0"><span class="text-white font-weight-bold">Veterinary Services</span></p>
+				    </div>
+				  </div>
+				  
+				  <div class="container mainContent">
+				  <h3>Edit Appointment for Pet <a data-th-href="@{/pets/{id}(id=${command.petId})}" data-th-text="${petName}"></a></h3>
+					<form class="" id="appointmentForm" action="#" data-th-action="@{/appointments}" data-th-object="${command}" method="post">
+					
+						<!-- Hidden items -->
+			            <input id="appointmentId" name="id" type="hidden" data-th-field="*{id}" value="">
+		      	        <input id="petId" name="petId" type="hidden" data-th-field="*{petId}" value="">
+			            <input id="petId" name="petId" type="hidden" data-th-field="*{clientId}" value="">
+		      	        
+			            
+					<div class="row">
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="petName">Pet Name</label>
+				            <span data-th-text = "${petName}" class="form-control" readonly></span>
+						</div>
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="clientName">Client Name</label>
+				            <span data-th-text = "${clientName}" class="form-control" readonly></span>
+						</div>
+					</div>			
+					
+					<div class="row">
+						<h5 class="col-md-12" >Duration</h5>
+					
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="hour">Hours</label>
+				            <input id="hour" name="duration" type="number" class="form-control"  data-th-field="*{duration}">
+						</div>
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="minute">Minute</label>
+				            <input id="minute" name="second" type="number" class="form-control"  data-th-field="*{duration}">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="reason">Reason</label>			
+							<select th:id = "reason" name = "reason" type="select" class="form-control" data-th-value="*{reason}">
+								 <option th:each="reason : ${reasons}" 
+								         data-th-value="${reason}" 
+								         th:text="${reason}">Reason</option>
+							</select>
+						</div>	
+						<div class="form-group col-md-6 col-sm-6">
+							<label for="comments">Comments</label>
+				            <input id="comments" name="comments" type="text" class="form-control" data-th-field="*{comments}">
+						</div>
+					</div>
+					
+					
+					
+					<div class="form-group col-md-12 col-sm-12">			
+						<button type="submit" form="appointmentForm" class="btn btn-success"  value="Save">Save</button>
+					</div>
 
 			
 			
 			</form>
-		
+		</div>
 		</div>
 	</div>
+	
+		<script type="text/javascript">
+	
+			//A simple datepicker value addendum
+			var now = new Date();
+				
+			var day = ("0" + now.getDate()).slice(-2);
+			var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	
+			var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+	
+			$('#datePicker').val(today);
+
+		</script>
 		
 </body>
 </html>
