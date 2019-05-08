@@ -7,39 +7,116 @@
 		<div class="row">
 			<header th:replace="fragments/header.html :: header" >
 			</header>
-			<div id="mainBody" class="col-md-8 col-sm-8">
-				<div id="content" class="pure-u-1">
-					<div class="pad right">
-						<a class="pure-button"  data-th-href="@{'/clients/new'}">Add client</a>
+			<div id="mainBody" class="col-md-10 col-sm-10">
+				<div
+					class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+					<div class="px-0">
+						<h1 class="display-1 font-bold">PAWS</h1>
+						<p class="lead mb-0">
+							<span class="text-white font-weight-bold">Veterinary
+								Services</span>
+						</p>
 					</div>
-					<div class="pad">
-					    <div data-th-if="${deleted}" class="message-box-info">
+				</div>
+				<div id="content" class="container">
+					<div class="row">						 	
+					  	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addClient">
+						  Add client
+						</button>
+						</div>
+					<div class="row">
+					    <div data-th-if="${deleted}" class="delete-bg row text-white bg-danger col-md-12 col-sm-12">
 							Deleted successfully
 					    </div>
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">Id</th>
 									<th scope="col">Name</th>
+									<th scope="col">Phone number</th>
+									<th scope="col">Address</th>
 									<th scope="col"></th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>	
 								<tr data-th-each="client : ${clients}">
-									<td> <a data-th-href="@{/clients/{id}(id=${client.id})}" data-th-text="${client.id}">...</a></td>
-									<td data-th-text="${client.name}">...</td>
+<!-- 									<td> <a data-th-href="@{/clients/{id}(id=${client.id})}" data-th-text="${client.id}">...</a></td>
+-->									<td data-th-text="${client.name}">...</td>
+ 									<td data-th-text="${client.phoneNumber}">...</td>
+									<td data-th-text="${client.address}">...</td>
 									<td><a class="btn btn-success btn-width" data-th-href="@{/clients/{e}(e=${client.id})}">Edit</a></td>										
 									<td><a class="btn btn-danger btn-width" data-th-href="@{/clients/{c}/delete(c=${client.id})}">Delete</a></td>
+									
 									
 								</tr>
 							</tbody>
 						</table>
 					</div>
+					<!-- Modal contents  -->
+					<div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="addClient" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="addClient">Add Client</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+  					        <form class="" id="theForm" action="#" data-th-action="@{/clients}" data-th-object="${command}" method="post">
+					      
+					      <div class="modal-body">
+									<input type="hidden" data-th-field="*{id}"/>
+								    <div data-th-if="${saved}" class="message-box-info">
+										Saved
+								    </div>
+					
+							        <div class="form-group">
+							            <label for="name">Name</label>
+							            <input class="form-control" id="name" name="name" type="text" data-th-field="*{name}">
+							        </div>
+			
+							        <div class="form-group">
+							            <label for="phone">Phone</label>
+							            <input id="phone" class="form-control" name="phone" type="tel" data-th-field="*{phoneNumber}">
+							        </div>
+									
+									
+							        <div class="form-group">
+							            <label for="address">Address</label>
+							            <textarea class="form-control" id="address" name="address" type="text" data-th-field="*{address}">
+							            </textarea>
+							        </div>
+							        									
+									
+								
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="submit" value="submit" class="btn btn-primary">Save Client</button>
+					      </div>
+					      </form>
+					    </div>
+					  </div>
+					</div>
+					
+					
 				</div>
+			</div>
+			
+			<div class="col-md-2 col-sm-2 rightBar">
+		    	
+				
 			</div>
 		</div>
     </div>
+    
+   
+    <script type="text/javascript">
+    
+    	$('.delete-bg').fadeOut('2000', function() {$(this).remove();});
+    </script>
+    				 
+    
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-package springapp.service;
+package springapp.appointments;
 
 
 import java.util.List;
@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ch.qos.logback.classic.Logger;
-import springapp.command.AppointmentCommand;
+import springapp.appointments.AppointmentCommand;
 import springapp.command.PetCommand;
-import springapp.dao.AppointmentDao;
+import springapp.appointments.AppointmentDao;
 import springapp.dao.ClientDao;
 import springapp.dao.PetDao;
-import springapp.domain.Appointment;
+import springapp.appointments.Appointment;
 import springapp.domain.Client;
 import springapp.domain.Pet;
 
@@ -55,7 +55,9 @@ public class AppointmentService {
 
 
 	public Appointment saveAppointment(AppointmentCommand command) {
-		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getTime(), command.getDuration(), command.getComments());
+		
+		Appointment newAppointment = new Appointment(command.getId(), command.getPetId(), command.getClientId(), command.getReason(), command.getDateTime(), command.getDurationInt(), command.getComments());
+		
 		return appointmentDao.save(newAppointment);
 	}
 	
@@ -70,5 +72,6 @@ public class AppointmentService {
 	public List<Pet> getPets() {
 		return petDao.list();
 	}
+	
 
 }

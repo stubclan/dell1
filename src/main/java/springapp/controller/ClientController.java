@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springapp.command.ClientCommand;
+import springapp.command.PetCommand;
 import springapp.domain.Client;
 import springapp.service.ClientService;
 
@@ -33,6 +34,7 @@ public class ClientController {
 	@Autowired
 	ClientService clientService;
 
+
     /**
      * Returns the name of the view template that should be used along witht the model to draw the list of clients
      *
@@ -45,6 +47,8 @@ public class ClientController {
 	 public String listClients(Model model) {
         List<Client> clients = clientService.getClients();
 		model.addAttribute("clients", clients);
+		model.addAttribute("command", new ClientCommand(null));	
+		
         return "clients/listClients";
     }
 	 
@@ -66,12 +70,15 @@ public class ClientController {
 	    if(id.equals("new")) {
 	        // create an empty command object to merge with the view template
 			model.addAttribute("command", new ClientCommand(null));	
+			model.addAttribute("emptyPet", new springapp.command.PetCommand());	
+
 		} else {
 	        // since we have a valid id, get the client object from the service
 			Client client = clientService.getClient(id);
 			// we create a client command that can be used when the browser sends the save object
 			model.addAttribute("command", new ClientCommand(client));
 
+			
 			// we get the list of pets, and send those as is since we dont need a command to carry changes to the pets
             // from this page
 			model.addAttribute("pets", clientService.getPets(client.getId()) );
@@ -101,7 +108,7 @@ public class ClientController {
 		 redirectAttributes.addAttribute("saved", true);
 
 
-	     return "redirect:/clients/"+client.getId();
+	     return "redirect:/clients/";
 		  
      }
 

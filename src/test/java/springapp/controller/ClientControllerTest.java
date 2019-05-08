@@ -13,9 +13,15 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import springapp.domain.Client;
 import springapp.service.ClientService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +64,21 @@ public class ClientControllerTest {
         assertThat(content, doc.select("a[href='/clients/1']").text(), is("1"));
         assertThat(content, doc.select("a[href='/clients/2']").text(), is("2"));
     }
+    
+    @Test
+    public void test() {
+    	LocalDate date = LocalDate.parse("2018-12-04");
+    	LocalTime time = LocalTime.parse("08:00:00 am");
+    	System.out.println(date);
+    	System.out.println(time);
+    	LocalDateTime appointment = LocalDateTime.of(date, time);
+    	String string = appointment.toString();
+    	LocalDateTime appointment2 = LocalDateTime.parse(string);
+    	System.out.println(appointment);
+    	System.out.println(appointment2);
+    }
+    	
+    
+    
 
 }

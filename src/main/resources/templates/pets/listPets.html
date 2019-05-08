@@ -2,63 +2,124 @@
 <html>
 <header th:replace="fragments/head.html :: head"> </header>
 <body>
-	<div id="container" class="container-fluid">
-		<div class="row">
-			<header th:replace="fragments/header.html :: header"> </header>
-			<div id="mainBody" class="pure-u pure-g column">
-				<div id="content" class="pure-u-1">
-					<div class="pad">
-						<div data-th-if="${deleted}" class="message-box-info">
-							Deleted successfully</div>
-						<table class="fullWidth pure-table pure-table-horizontal">
-							<thead>
-								<tr>
-									<th>Id</th>
-									<th>Name</th>
-									<th>Gender</th>
-									<th>Altered?</th>
-								<!-- 	<th>Client Id</th>  -->
-									<th>Client Name</th>
-									<th></th>
-									<th></th>
 
-								</tr>
-							</thead>
-							<tbody>
+	<div id="container" class="container-fluid" >
+	<div class="row">
+		<header th:replace="fragments/header.html :: header" >
+		</header>
+		<div id="mainBody" class="col-md-10 col-sm-10">
+				<div
+					class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+					<div class="px-0">
+						<h1 class="display-1 font-bold">PAWS</h1>
+						<p class="lead mb-0">
+							<span class="text-white font-weight-bold">Veterinary
+								Services</span>
+						</p>
+					</div>
+					</div>
+			<div id="content" class="container">
+				<div class="pad">
+				    <div class="row">						 	
+					  	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addPet">
+						  Add Pet
+						</button>
+						</div>
+				    <div data-th-if="${deleted}" class="delete-bg row text-white bg-danger col-md-12 col-sm-12">
+							Deleted successfully
+					    </div>
+					<table class="table table-stripped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Gender</th>
+								<th>Client</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>	
+							<tr data-th-each="pet : ${pets}">
+								<td data-th-text="${pet.name}">...</td>
+								<td data-th-text="${pet.gender}">...</td>
+								<td data-th-text="${pet.clientName}">...</td>
+								
+								<td><a class="btn btn-success btn-width" data-th-href="@{/pets/{id}(id=${pet.id})}">Edit</a></td>										
+								<td><a class="btn btn-danger btn-width" data-th-href="@{/pets/{c}/delete(c=${pet.id})}">Delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<div class="modal fade" id="addPet" tabindex="-1" role="dialog" aria-labelledby="addPet" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="addPet">Add Pet</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      
+					      <form class="" id="theForm" action="#" data-th-action="@{/pets}" method="post">
+					      
+					      <div class="modal-body">
+			
+									<div class="form-group">
+							            <label>Client</label>
+							            <select th:id = "clients" name = "clientId" type="select" class="form-control">
+													 <option th:each="client : ${clients}" 
+													         data-th-value="${client.id}" 
+													         th:text="${client.name}">Client</option>
+												</select>
+							        </div>
+							        
+					
+							        <div class="form-group">
+							            <label for="name">Name</label>
+							            <input class="form-control" id="name" name="name" type="text">
+							        </div>
+			
+							        <div class="form-group">
+							            <label>Gender</label>
+										<select name="gender" class="form-control">
+										    <option selected="selected" data-th-value="'Female'" data-th-text="Female"></option>
+										    <option data-th-value="'Male'" data-th-text="Male"></option>
+										</select>
+							        </div>
+									
+									
+							        <div class="form-group">
+							            <label for="altered">Altered</label>
+							            <input id="altered" name="altered" type="checkbox">
+							        </div>
+					        
+							        									
+									
+								
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="submit" value="submit" class="btn btn-primary">Save Client</button>
+					      </div>
+					      </form>
+					    </div>
+					  </div>
 
-								<tr data-th-each="pet : ${pets}">
-									<td><a data-th-href="@{/pets/{id}(id=${pet.id})}"
-										data-th-text="${pet.id}">...</a></td>
-									<td data-th-text="${pet.name}">...</td>
-									<td data-th-text="${pet.gender}">...</td>
-									<td><input data-th-if="${pet.altered} == true"
-										id="altered" name="altered" type="checkbox" checked /> <input
-										data-th-if="${pet.altered} == false" id="altered"
-										name="altered" type="checkbox" /></td>
-
-								<!-- 	<td><a data-th-href="@{/clients/{e}(e=${pet.clientId})}"
-										data-th-text="${pet.clientId}"> client </a></td>  -->
-
-
-									<td><a data-th-each="client : ${clients}"
-										data-th-if="${pet.clientId} == ${client.id}"
-										data-th-href="@{/clients/{e}(e=${client.id})}"
-										data-th-value="${client.id}" data-th-text="${client.name}">...</a></td>
-
-									<td><a class="btn btn-success btn-width"
-										data-th-href="@{/pets/{e}(e=${pet.id})}">Edit</a></td>
-									<td><a class="btn btn-danger btn-width"
-										data-th-href="@{/pets/{c}/delete(c=${pet.id})}">Delete</a></td>
-
-
-								</tr>
-							</tbody>
-						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+    </div>
+    </div>
+    
+    <script type="text/javascript">
+		
+				 //document.getElementsByClassName("today").autofocus;
+				 $('.delete-bg').fadeOut('1600', function() {$(this).remove();});
+					
+				</script>
+
 </body>
 </html>
 

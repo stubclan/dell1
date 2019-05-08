@@ -8,15 +8,41 @@
 			<header th:replace="fragments/header.html :: header" >
 			</header>
 			<div id="mainBody" class="col-md-10 col-sm-10">
-				<div class="loginImage text-center">
-						<img src="/img/paws-bg.jpg" class="img-fluid" alt="Responsive image">
-				</div>
+				<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+				    <div class="px-0">
+				      <h1 class="display-1 font-bold">PAWS</h1>
+				      <p class="lead mb-0"><span class="text-white font-weight-bold">Veterinary Services</span></p>
+				    </div>
+				  </div>
 					<div class="jumbotron">
 						
-						<h1 class="text-center">Welcome to the PAWS Veterinary Services.</h1>
+						<h1 class="text-center">Welcome to PAWS Veterinary Services.</h1>
 						<hr />
 						<div class="loginControl loginForm">
 						<div class="mainContent">
+						<div class="container">
+				        <!-- Example row of columns -->
+				        <div class="row">
+				          <div class="col-md-4 text-center">
+				            <h2>Dog of the week</h2>
+								<img class="rounded img-thumbnail" alt="" src="/img/nellie.jpg" width="400px" height="300px" />
+					            <p><a class="btn btn-secondary" href="#" role="button">View details</a></p>
+				          </div>
+				          <div class="col-md-4 text-center">
+				            <h2>Doctober Fest</h2>
+				            <img class="rounded img-thumbnail" alt="" src="/img/doctoberfest.jpg" width="400px" height="300px" />
+				            <p><a class="btn btn-secondary" href="https://www.capitalbrewery.com/events/event/dogtoberfest-2019/?age-verified=8e940bf971" role="button">View details</a></p>
+				          </div>
+				          <div class="col-md-4 text-center">
+				            <h2>Dog Fun Facts</h2>
+				            	<img class="rounded img-thumbnail" alt="" src="/img/dog-facts.jpg" width="400px" height="300px"/>
+					            <p><a class="btn btn-secondary" href="https://www.akc.org/expert-advice/lifestyle/dog-facts/" role="button">View details</a></p>
+				          </div>
+				        </div>
+				
+				        <hr>
+				
+				      </div>
 							<p class="lead">
 								From this app, you should be able to:
 								<ul>
@@ -31,9 +57,12 @@
 						
 										
 					</div>
+					
+					
 			</div>
 		</div>
     </div>
+    
 </body>
 </html>
 

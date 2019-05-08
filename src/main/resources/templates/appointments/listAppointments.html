@@ -1,108 +1,133 @@
 <!DOCTYPE HTML>
 <html>
-<header th:replace="fragments/head.html :: head" >
-</header>
+<header th:replace="fragments/head.html :: head"> </header>
 <body>
 
-	<div id="container" class="container-fluid" >
+	<div id="container" class="container-fluid">
 		<div class="row">
-			<header data-th-replace="fragments/header.html :: header" >
+			<header data-th-replace="fragments/header.html :: header">
 			</header>
-			<div id="mainBody" class="col-md-10 col-sm-10">
-			<div class="banner text-center">
-						<img src="/img/paws-banner-white.jpg" class="img-fluid" alt="Responsive image">
+			<div id="mainBody" class="col-md-8 col-sm-8">
+				<div
+					class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+					<div class="px-0">
+						<h1 class="display-1 font-bold">PAWS</h1>
+						<p class="lead mb-0">
+							<span class="text-white font-weight-bold">Veterinary
+								Services</span>
+						</p>
+					</div>
 				</div>
+				 
 				<div id="content" class="container">
+				
 					<div class="row">
-						<a class="button btn-info add-button"  data-th-href="@{'/appointments/new'}">Add Appointment</a>
+						<a class="button btn-info add-button"
+							data-th-href="@{'/appointments/new'}">Add Appointment</a>
 					</div>
 					<div class="row">
-					    <div data-th-if="${deleted}" class="delete-bg row text-white bg-danger">
-							Deleted successfully
-					    </div>
+						<div data-th-if="${deleted}"
+							class="delete-bg row text-white bg-danger col-md-12 col-sm-12">
+							Deleted successfully</div>
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">Id</th>
 									<th scope="col">Time</th>
 									<th scope="col">Duration</th>
 									<th scope="col">Client Name</th>
-							<!-- 	<th scope="col">Client Name</th>   -->
 									<th scope="col">Pet Name</th>
-							<!--		<th scope="col">Pet Name</th>  -->
-									<th scope="col">Reason</th>								
+									<th scope="col">Reason</th>
 									<th scope="col">Comments</th>
 									<th scope="col"></th>
 									<th scope="col"></th>
-									
-									
+
+
 								</tr>
 							</thead>
-							<tbody>	
-								<tr data-th-each="appointment : ${appointments}">
-									<td data-th-text="${appointment.id}">...</td>		
-									<td data-th-text="${appointment.time}">...</td>		
-								    <td data-th-text="${appointment.duration}">...</td>			
-								    <td data-th-text="${appointment.clientName}">...</td>	
-                                    <td data-th-text="${appointment.petName}">...</td>	
-									<td data-th-text="${appointment.reason}">...</td>					
-									<td data-th-text="${appointment.comments}">...</td>	
-									<td><a class="btn btn-success btn-width" data-th-href="@{/appointments/edit/{e}(e=${appointment.id})}">Edit</a></td>										
-<!-- 									<td><a class="btn btn-danger btn-width" data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}">Delete</a></td>
--->									<td><button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${appointment.id}">Delete</button></td>
-									
-						
-						<!-- Modal for deleting appointment -->
-						<div class="modal fade" data-th-id="'deleteModal'+${appointment.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <h5 class="modal-title" data-th-text ="'Delete appointment for ' + ${appointment.petName} + '?'"></h5>
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						          <span aria-hidden="true">&times;</span>
-						        </button>
-						      </div>
-						      <div class="modal-body">			            
-														
-									<div class="form-group">
-										<label for="petName">Pet Name</label>
-							            <span data-th-text = "${appointment.petName}" class="form-control" readonly></span>
+							<tbody>
+
+								<tr class="rowData" data-th-each="appointment : ${appointments}">
+									<td id="apptTime" data-th-text="${appointment.dateTimeString}">...</td>
+									<td data-th-text="${appointment.duration}">...</td>
+									<td data-th-text="${appointment.clientName}">...</td>
+									<td data-th-text="${appointment.petName}">...</td>
+									<td data-th-text="${appointment.reason}">...</td>
+									<td data-th-text="${appointment.comments}">...</td>
+									<td><a class="btn btn-success btn-width"
+										data-th-href="@{/appointments/edit/{e}(e=${appointment.id})}">Edit</a></td>
+									<!-- 									<td><a class="btn btn-danger btn-width" data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}">Delete</a></td>
+-->
+									<td><button type="button" class="btn btn-danger"
+											data-toggle="modal"
+											th:attr="data-target='#deleteModal'+${appointment.id}">Delete</button></td>
+
+
+									<!-- Modal for deleting appointment -->
+									<div class="modal fade"
+										data-th-id="'deleteModal'+${appointment.id}" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title"
+														data-th-text="'Delete appointment for ' + ${appointment.petName} + '?'"></h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+
+													<div class="form-group">
+														<label for="petName">Pet Name</label> <span id="petName"
+															data-th-text="${appointment.petName}"
+															class="form-control" readonly></span>
+													</div>
+
+													<div class="form-group">
+														<label for="clientName">Client Name</label> <span
+															data-th-text="${appointment.clientName}"
+															class="form-control" readonly></span>
+													</div>
+
+													<div class="form-group">
+														<label for="reason">Reason</label> <span
+															data-th-text="${appointment.reason}" class="form-control"
+															readonly></span>
+													</div>
+
+													<div class="form-group">
+														<label for="duration">Duration</label> <span
+															data-th-text="${appointment.duration}"
+															class="form-control" readonly></span>
+													</div>
+
+													<div class="form-group">
+														<label for="comments">Client Name</label> <span
+															data-th-text="${appointment.comments}"
+															class="form-control" readonly></span>
+													</div>
+
+
+
+
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary"
+														data-dismiss="modal">Close</button>
+													<a class="btn btn-danger"
+														data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}"
+														role="button">Delete</a>
+												</div>
+											</div>
+										</div>
 									</div>
-									
-									<div class="form-group">
-										<label for="clientName">Client Name</label>
-							            <span data-th-text = "${appointment.clientName}" class="form-control" readonly></span>
-									</div>
-									
-									<div class="form-group">
-										<label for="reason">Client Name</label>
-							            <span data-th-text = "${appointment.reason}" class="form-control" readonly></span>
-									</div>
-									
-									<div class="form-group">
-										<label for="duration">Client Name</label>
-							            <span data-th-text = "${appointment.duration}" class="form-control" readonly></span>
-									</div>
-									
-									<div class="form-group">
-										<label for="comments">Client Name</label>
-							            <span data-th-text = "${appointment.comments}" class="form-control" readonly></span>
-									</div>
-									
-									
-				
-					
-								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-								        <a type="button"  data-th-href="@{/appointments/delete/{d}(d=${appointment.id})}" class="btn btn-danger">Delete</a>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-										
-														
-															
+
+
+
+								</tr>
+								<tr data-th-if="${appointments == null}">No appointments!
 								</tr>
 							</tbody>
 						</table>
@@ -110,8 +135,52 @@
 
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-2 rightBar">
+		    	<h3 class="text-white rounded bg-dark text-center">Upcoming appointments</h3>
+				<div id="calendar"></div>
+				
 		</div>
-    </div>
+			
+		</div>
+		
+			<script src="/js/calendar/moment.min.js"></script>	
+			<script src="/js/calendar/calendar.js" ></script>
+			
+			<script type="text/javascript">
+		
+				 var content = [
+					    
+					];
+				
+				 document.querySelectorAll(".rowData").forEach(rowData => {
+					var date = rowData.firstElementChild.innerHTML;
+					var data = {};
+					data['eventName'] = rowData.childNodes[7].innerHTML;
+					data['calendar'] = rowData.childNodes[9].innerHTML;
+					data['color'] = 'red';
+					data['duration'] = rowData.childNodes[3].innerHTML;
+					
+					data['dateRow'] = date;
+					
+					content.push(data);
+					
+		
+		    	});
+				 
+				 console.log(content);
+				 
+				 var calendar = new Calendar('#calendar', content);
+				 
+				 
+				 //document.getElementsByClassName("today").autofocus;
+				 $('.delete-bg').fadeOut('1600', function() {$(this).remove();});
+					
+				</script>
+		
+	</div>
+	
+	
+
 </body>
 </html>
 

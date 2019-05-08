@@ -1,9 +1,10 @@
-package springapp.domain;
+package springapp.appointments;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import springapp.dao.AppointmentDao;
+import springapp.appointments.AppointmentDao;
 import springapp.service.ClientService;
 
 public class Appointment {
@@ -12,17 +13,17 @@ public class Appointment {
 	private final Integer petId;
 	private final Integer clientId;
 	private Reason reason;
-	private Timestamp time;
+	private Date dateTime;
 	private Integer duration;
 	private String comments;
 
-	public Appointment(Integer myId, Integer myPetId, Integer myClientId, Reason myReason, Timestamp myApptTime, Integer myDuration, String myComments){
+	public Appointment(Integer myId, Integer myPetId, Integer myClientId, Reason myReason, Date dateTime, Integer myDuration, String myComments){
 		
 		this.id = myId;
 		this.petId = myPetId;
 		this.clientId = myClientId;		
 		this.reason = myReason;
-		this.time = new Timestamp(System.currentTimeMillis());
+		this.dateTime = dateTime;
 		this.duration = myDuration;
 		this.comments = myComments;
 	}
@@ -35,12 +36,12 @@ public class Appointment {
 		this.reason = apptReason;
 	}
 
-	public Timestamp getTime() {
-		return time;
+	public Date getTime() {
+		return dateTime;
 	}
 
 	public void setTime(Timestamp time) {
-		this.time = time;
+		this.dateTime = time;
 	}
 
 	public String getComments() {
