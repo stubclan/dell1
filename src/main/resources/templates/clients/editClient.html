@@ -1,85 +1,171 @@
 <!DOCTYPE HTML>
 <html>
-<header th:replace="fragments/head.html :: head" >
-</header>
+<header th:replace="fragments/head.html :: head"> </header>
 <body>
-	<div id="container" class="content pure-g" >
-		<header th:replace="fragments/header.html :: header" >
-		</header>
-		<div id="mainBody" class="pure-u pure-g column">
-			<div id="content" class="pure-u-1">
-				<div class="pad right">
-					<button type="submit" form="theForm" class="pure-button"  value="Save">Save</button>
-					<a class="pure-button" data-th-href="@{/clients}">Cancel</a>
-					<a class="pure-button" data-th-if="${command.id != null}" data-th-href="@{/clients/{c}/delete(c=${command?.id})}">Delete</a>
-					<a class="pure-button" data-th-if="${command.id != null}" data-th-href="@{/pets/new?clientId={c}(c=${command?.id})}">Add Pet</a>
+	<div id="container" class="container-fluid">
+		<div class="row">
 
+			<header th:replace="fragments/header.html :: header"> </header>
+			<div id="mainBody" class="col-md-8 col-sm-8">
+				<div
+					class="jumbotron p-4 p-md-5 text-white rounded bg-dark text-center">
+					<div class="px-0">
+						<h1 class="display-1 font-bold">PAWS</h1>
+						<p class="lead mb-0">
+							<span class="text-white font-weight-bold">Veterinary
+								Services</span>
+						</p>
+					</div>
 				</div>
-				<div class="pad">
-					<form class="pure-form pure-form-aligned" id="theForm" action="#" data-th-action="@{/clients}" data-th-object="${command}" method="post">
-						<input type="hidden" data-th-field="*{id}"/>
-					    <div data-th-if="${saved}" class="message-box-info">
-							Saved
-					    </div>
+				<div id="content" class="container">
+					<form class="" id="theForm" action="#"
+						data-th-action="@{/clients}" data-th-object="${command}"
+						method="post">
 
-						<div class="pure-control-group">
-				            <label>Id</label>
-				            <span data-th-if="${command.id == null}"> New </span>
-  				            <span name="id" data-th-if="${command.id != null}" data-th-text="*{id}"> New </span>
-				        </div>
-		
-				        <div class="pure-control-group">
-				            <label for="name">Name</label>
-				            <input id="name" name="name" type="text" data-th-field="*{name}">
-				        </div>
+						<div class="col-md-6 col-sm-6">
+							<input type="hidden" data-th-field="*{id}" />
+							<div data-th-if="${saved}" class="message-box-info">Saved</div>
 
-				        <div class="pure-control-group">
-				            <label for="phone">Phone</label>
-				            <input id="phone" name="phone" type="text" data-th-field="*{phoneNumber}">
-				        </div>
-						
-						
-				        <div class="pure-control-group">
-				            <label for="address">Address</label>
-				            <textarea id="address" name="address" type="text" data-th-field="*{address}">
-				            </textarea>
-				        </div>
-				        <div class="pure-control-group" data-th-if="${command.id != null}">
-							<div data-th-if="${deleted}" class="message-box-info">
-								Deleted successfully
+
+							<div class="form-group">
+								<label for="name">Name</label> <input class="form-control"
+									id="name" name="name" type="text" data-th-field="*{name}">
 							</div>
-							<table class="fullWidth pure-table pure-table-horizontal" >
-									<thead>
-										<tr>
-											<th>Pet Id</th>
-											<th>Name</th>
-											<th>Gender</th>
-										</tr>
-									</thead>
-									<tbody data-th-if="${pets.size() > 0}">	
-										<tr data-th-each="pet : ${pets}">
-											<td> <a data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}" data-th-text="${pet.id}">...</a></td>
-											<td data-th-text="${pet.name}">...</td>
-											<td data-th-text="${pet.gender}">...</td>
-										</tr>
-									</tbody>
-									<tbody data-th-if="${pets.size() == 0}">
-										<tr>
-											<td  colspan=3>No associated pets</td>
-										</tr>
-									</tbody>
-								</table>
-				        	</div>
-				        </div>
-						
-						
-					</form>
-					
-							
+
+							<div class="form-group">
+								<label for="phone">Phone</label> <input class="form-control"
+									id="phone" name="phone" type="text"
+									data-th-field="*{phoneNumber}">
+							</div>
+
+
+							<div class="form-group">
+								<label for="address">Address</label>
+								<textarea class="form-control" id="address" name="address"
+									type="text" data-th-field="*{address}">
+				            </textarea>
+							</div>
+						</div>
+						<div class="row saveCancel">
+							<button type="submit" form="theForm" class="btn btn-success"
+								value="Save">Save</button>
+							<button class="btn btn-info " data-th-href="@{/clients}">Cancel</button>
+							<button class="btn btn-danger " data-th-href="@{/clients/{c}/delete(c=${id})}">Delete</button>
+						</div>
+				</div>
+
+
+				</form>
+			</div>
+			<div id="petList" class="rightBar col-md-2 col-sm-2"
+				data-th-if="${command.id != null}">
+				<h5 id="petsFor" class="text-white" style="margin-top: 10px;"
+					data-th-text="${command.name}"></h5>
+				<div data-th-if="${deleted}" class="message-box-info">Deleted
+					successfully</div>
+				<table class="table table-stripped">
+					<thead>
+						<tr>
+
+							<th>Name</th>
+							<th>Gender</th>
+							<th>Editd</th>
+						</tr>
+					</thead>
+					<tbody data-th-if="${pets.size() > 0}">
+						<tr data-th-each="pet : ${pets}">
+							<td data-th-text="${pet.name}">...</td>
+							<td data-th-text="${pet.gender}">...</td>
+							<td><a class="btn btn-success"
+								data-th-href="@{/pets/{pid}?clientId={cid}(pid=${pet.id}, cid=${command.id})}">Edit</a></td>
+
+						</tr>
+					</tbody>
+					<tbody data-th-if="${pets.size() == 0}">
+						<tr>
+							<td colspan=3>No associated pets</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="row text-center">
+					<button type="button" class="btn btn-info text-center addPetButton"
+						data-toggle="modal" data-target="#addPet">Add Pet</button>
+				</div>
+
+				<div class="modal fade" id="addPet" tabindex="-1" role="dialog"
+					aria-labelledby="addClient" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="addPet">Add Pet</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+							<form class="" id="theForm" action="#" data-th-action="@{/pets}"
+								method="post">
+
+								<div class="modal-body">
+
+									<input class="hidden" id="name" name="clientId" type="text"
+										data-th-field="${command.id}"> 
+										<input class="hidden"
+										name="clientId" type="number" value="0">
+										
+
+
+									<div class="form-group">
+										<label>Client</label> 
+										<input class="form-control" type="text"
+											data-th-field="${command.name}" readonly>
+									</div>
+
+
+									<div class="form-group">
+										<label for="name">Pet Name</label> <input class="form-control"
+											id="name" name="name" type="text">
+									</div>
+
+									<div class="form-group">
+										<label>Gender</label> <select name="gender"
+											class="form-control">
+											<option selected="selected" data-th-value="'Female'"
+												data-th-text="Female"></option>
+											<option data-th-value="'Male'" data-th-text="Male"></option>
+										</select>
+									</div>
+
+
+									<div class="form-group">
+										<label for="altered">Altered</label> <input id="altered"
+											name="altered" type="checkbox">
+									</div>
+
+
+
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Close</button>
+									<button type="submit" value="submit" class="btn btn-primary">Save
+										Pet</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
+
+
+
 		</div>
-    </div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>
 

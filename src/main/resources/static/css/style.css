@@ -1,83 +1,116 @@
-html, body {
-   color: #333;
-   height: 100%
+/*Custom styles*/
+
+body{
+	 background-image: url("/img/pawprints.png");
 }
 
-
-#container {
-	display: grid;
-
-  	grid-template-areas:
-    "nav mainBody";
-    
-  grid-template-columns: 130px 1fr;
-  grid-template-rows: 1fr;
-
-  height: 100%;
+.sidebar {
+	background-color: #343a40;
+	height: 100vh;
 }
 
-#nav {
-	grid-area: nav;
-  	padding-left: 5px ;
-  	background-color: #555;
-  }
+.sidebar-menu ul li {
+	padding: 10px;
+	border-bottom: 1px solid white;
+}
+
+.sidebar-menu ul li a {
+	color: white;
+}
+
+.sidebar-menu ul li a:hover {
+	color: #343a40;
+	background-color: white;
+}
+
+.error {
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	color: white;
+}
+
+.error h3 {
+	background: #007db8;
+	padding: 40px;
+}
+
+#petsFor:before {
+	content: "Pets for ";
+}
+
+.error .lead {
+	color: grey;
+}
+
+.loginControl {
+	padding:10px;
+	box-sizing: border-box;	
+}
+
+.loginControl h1 {
+	margin-bottom: 10px;
+}
+.loginForm {
+}
+
+.loginControl .row {
+	margin: 10px;
+}
+
+.add-button {
+	padding: 10px;
+}
+
+.appointmentCollapse .button {
+	margin: 10px;
+}	
+
+.delete-bg {
+	padding: 10px;
+	color: white;
+	opacity: 0.6;
+}
+
+.form-custom {
+	margin: 10px auto;
+}
+
+.loginImage {
+	background: black;
+}
+
+.banner {
+	background-color: #e9ecef;
+}
+
+.banner img {
+	border: 2px solid #e9ecef;
+}
 
 #mainBody {
-	grid-area: mainBody;
-	display: grid;
+	background-color: rgba(233, 236, 239, 0.8);
 }
 
-#loginBox {
-    display: grid;
-	align-items: center;
-	justify-items: center; /* adjusted */
+#mainBody .container {
+		
 }
 
-#loginBox > div {
-	border: 1px solid #444;
-	padding: 10px;
-	border-radius: 4px;
+.mainContent {
 	
 }
 
-
-.fullWidth {
-	width: 100%;
+.saveCancel button {
+	margin: 10px;
 }
 
-
-.pad {
-	padding: 10px;
+.addPetButton {
+	margin: 10px auto;	
 }
 
-.margin {
-	margin: 10px;	
-}
-.right {
-	text-align: right
+#petList {
+	background: #343a40;
 }
 
-.message-box-error,
-.message-box-info,
-.message-box-success {
-	margin: 5px 0px;
-	display: block;
-	padding: 10px;
-	text-align: center;
-	color: white;
-	border-radius: 4px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}	
-
-.message-box-error {
-	background: rgb(202, 60, 60); /* this is a maroon */
+#petList table {
+	color: white!important;
 }
-.message-box-info{
-	background: rgb(66, 184, 221); /* this is a light blue */
-}
-.message-box-success {
-	background: rgb(28, 184, 65); /* this is a green */
-}
-
-
-.

@@ -14,7 +14,9 @@ public class PetCommand {
 	private boolean altered;
 	private Gender gender;
 	private Integer clientId;
-	private Client client;
+	private Client client; //Just checking if this is the issue
+	private String clientName;
+
 
 	/**
 	 * Initialise an empty pet command with the client id set
@@ -117,6 +119,8 @@ public class PetCommand {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
+	
+
 
 	/**
 	 * @return the client object associated with the pet
@@ -132,6 +136,16 @@ public class PetCommand {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+
 	
 	
 	

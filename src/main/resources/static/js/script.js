@@ -1,0 +1,1 @@
+$('.delete-bg').fadeOut('1600', function() {$(this).remove();});

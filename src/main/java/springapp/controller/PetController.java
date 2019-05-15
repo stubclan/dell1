@@ -1,5 +1,6 @@
 package springapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import springapp.appointments.Appointment;
+import springapp.appointments.AppointmentCommand;
 import springapp.command.PetCommand;
 import springapp.domain.Client;
 import springapp.domain.Pet;
@@ -55,10 +59,31 @@ public class PetController {
 	 public String listPets(Model model) {
 	    // get the list of pets from the service
         List<Pet> pets = petService.getPets();
+        
+        List<Client> clients = clientService.getClients();   
 
         // we add the pets to the model
         // Note we are not adding the PetCommand instances, but Pet instances
+        
 		model.addAttribute("pets", pets);
+		model.addAttribute("command", null);
+		
+		
+		List<PetCommand> petCommands = new ArrayList<PetCommand>();
+			 for (Pet pet: petService.getPets()) {
+	 			 
+				 PetCommand command = new PetCommand(pet);	
+
+				 command.setClientName(clientService.getClient(pet.getClientId()).getName());
+				 
+				 petCommands.add(command);
+			 }		 
+			 
+			 List<Client> clients = clientService.getClients();
+
+			 model.addAttribute("clients", clients);
+			model.addAttribute("pets", petCommands);
+
         return "pets/listPets";
     }
 
@@ -110,6 +135,7 @@ public class PetController {
 
         // we get the client based on the client id in the command
 		Client client = clientService.getClient(petCommand.getClientId());
+		logger.debug("This is a client name:" + client.getName());
 
 		// we set the client instance in the pet command,
         // when we got the command earlier, we only had the clientid, but now we should have the full client object.
@@ -118,6 +144,8 @@ public class PetController {
 
 		// we add the command pet command instance to the mode (which has the client instance as well as the pet info)
 		model.addAttribute("command", petCommand);
+	
+
 		return "pets/editPet";
 	}
 
@@ -141,7 +169,7 @@ public class PetController {
         if(fromClientPage) {
             redirectAttributes.addAttribute("clientId", pet.getClientId());
         }
-        return "redirect:/pets/"+pet.getId();
+        return "redirect:/pets/";
 
     }
 
@@ -166,7 +194,7 @@ public class PetController {
 
 		if(clientId != null){
             // if a client id was passed in, then we redirect to the client edit page
-			return "redirect:/clients/"+clientId;
+			return "redirect:/clients/";
 		}
 
 		// otherwise we redirect to the petslisting page
